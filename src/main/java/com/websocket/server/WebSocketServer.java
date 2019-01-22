@@ -12,26 +12,46 @@ import javax.websocket.server.ServerEndpoint;
 
 import org.springframework.stereotype.Component;
 
+/**
+ * 
+ * @author wendong
+ *
+ * 2019年1月22日
+ */
 @ServerEndpoint("/websocket/{sid}")
 @Component
 public class WebSocketServer {
 
-	// 静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。
+	/**
+	 *  静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。
+	 */
 	private static int onlineCount = 0;
-	// concurrent包的线程安全Set，用来存放每个客户端对应的MyWebSocket对象。
+	/**
+	 *  concurrent包的线程安全Set，用来存放每个客户端对应的MyWebSocket对象。
+	 */
 	private static CopyOnWriteArraySet<WebSocketServer> webSocketSet = new CopyOnWriteArraySet<WebSocketServer>();
 
-	// 与某个客户端的连接会话，需要通过它来给客户端发送数据
+	/**
+	 *  与某个客户端的连接会话，需要通过它来给客户端发送数据
+	 */
 	private Session session;
-	// 接收sid
+	/**
+	 *  接收sid
+	 */
 	private String sid = "";
 
-	/** * 连接建立成功调用的方法 */
+	/**连接建立成功调用的方法 
+	 * 
+	 * @param session
+	 * @param sid
+	 */
 	@OnOpen
 	public void onOpen(Session session, @PathParam("sid") String sid) {
 		this.session = session;
-		webSocketSet.add(this);// 加入set中
-		addOnlineCount();// 在线数加1
+		// 加入set中
+		webSocketSet.add(this);
+		// 在线数加1
+		addOnlineCount();
 		System.out.println("WebSocketServer.onOpen()"+"有窗口开始监听："+sid+",当前在线人数："+getOnlineCount());
 		this.sid = sid;
 		try {
@@ -42,10 +62,14 @@ public class WebSocketServer {
 		}
 	}
 
-	/** * 连接关闭调用的方法 */
+	/**
+	 * 连接关闭调用的方法
+	 */
 	@OnClose
 	public void onClose() {
-		webSocketSet.remove(this);// 从set中删除
+		// 从set中删除
+		webSocketSet.remove(this);
+		// 在线数减1
 		subOnlineCount();         // 在线数减1
 		// log.info("有一连接关闭！当前在线人数为" + getOnlineCount());
 		System.out.println("WebSocketServer.onClose()"+"有一连接关闭 ，当前在线人数"+getOnlineCount());

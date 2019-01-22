@@ -7,6 +7,12 @@ import org.springframework.stereotype.Repository;
 
 import com.system.entity.Dept;
 
+/**
+ * 
+ * @author wendong
+ *
+ * 2019年1月22日
+ */
 @Repository
 public interface DeptMapper {
 	

@@ -4,6 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * @author wendong
+ *
+ * 2019年1月22日
+ */
 public class ApiReturnUtil implements Serializable{
 
 	private static final long serialVersionUID = 1L;

@@ -5,6 +5,12 @@ import javax.servlet.annotation.WebServlet;
  
 import com.alibaba.druid.support.http.StatViewServlet;
  
+/**
+ * 
+ * @author wendong
+ *
+ * 2019年1月22日
+ */
 @WebServlet(urlPatterns="/druid/*",
     initParams={
          @WebInitParam(name="allow",value="127.0.0.1,192.178.1.6"),// IP白名单(没有配置或者为空，则允许所有访问)

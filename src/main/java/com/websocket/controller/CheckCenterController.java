@@ -13,6 +13,12 @@ import com.websocket.server.ApiReturnObject;
 import com.websocket.server.ApiReturnUtil;
 import com.websocket.server.WebSocketServer;
 
+/**
+ * 
+ * @author wendong
+ *
+ * 2019年1月22日
+ */
 @Controller
 @RequestMapping("/checkcenter")
 public class CheckCenterController {

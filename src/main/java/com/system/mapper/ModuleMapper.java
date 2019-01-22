@@ -8,6 +8,12 @@ import org.springframework.stereotype.Repository;
 
 import com.system.entity.Module;
 
+/**
+ * 
+ * @author wendong
+ *
+ * 2019年1月22日
+ */
 @Repository
 public interface ModuleMapper {
 

@@ -1,6 +1,12 @@
 package com.websocket.server;
 import java.io.Serializable;
 
+/**
+ * 
+ * @author wendong
+ *
+ * 2019年1月22日
+ */
 public class ApiReturnObject implements Serializable{
 
 	private static final long serialVersionUID = 1L;
