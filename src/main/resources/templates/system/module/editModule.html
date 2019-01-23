@@ -50,10 +50,10 @@
 				</label>
 				<div class="layui-input-inline">
 					<input type="text" list="type123" name="type" required=""
-						lay-verify="required" autocomplete="off" class="layui-input"
+						lay-verify="required" class="layui-input"
 						th:value="${module.type}" >
 						<datalist id="type123">
-							<option th:each="type:${typeSet}"><span th:text="${type}"></option>
+							<option th:each="type:${typeSet}" th:value="${type}"></option>
 						</datalist>
 				</div>
 			</div>

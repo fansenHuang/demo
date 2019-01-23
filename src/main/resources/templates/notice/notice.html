@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
   
   <head>
     <meta charset="UTF-8">
@@ -28,25 +28,20 @@
     </div>
     <div class="x-body">
       <div class="layui-row">
-        <form class="layui-form layui-col-md12  layui-form-pane">
-           <div class="layui-form-item" id="x-city">
-            <label class="layui-form-label">城市联动</label>
-            <div class="layui-input-inline">
-              <select name="province" lay-filter="province">
-                <option value="">请选择省</option>
-              </select>
-            </div>
-            <div class="layui-input-inline">
-              <select name="city" lay-filter="city">
-                <option value="">请选择市</option>
-              </select>
-            </div>
-            <div class="layui-input-inline">
-              <select name="area" lay-filter="area">
-                <option value="">请选择县/区</option>
-              </select>
-            </div>
+        <form class="layui-form layui-col-md12 x-so layui-form-pane">
+          <div class="layui-input-inline">
+            <select name="type">
+               <option value="">全部类型</option>
+			   <option value="主菜单">主菜单</option>
+			   <option value="左侧菜单">左侧菜单</option>
+			   <option value="按钮">按钮</option>
+			   <option value="菜单">菜单</option>
+            </select>
           </div>
+          <input class="layui-input" placeholder="发送人" name="name" th:value="${name}">
+          <input class="layui-input" placeholder="开始日" name="start" id="start" th:value="${start}"> 
+		  <input class="layui-input" placeholder="截止日" name="end" id="end" th:value="${end}">
+          <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
         </form>
       </div>
       <blockquote class="layui-elem-quote"> </blockquote>
@@ -105,10 +100,7 @@
     						  // socket.close(); 
     						  //}); 
     					  }
-    					  }
-    			  }
-    		  }
-    	  }
+      		
     </script>
   </body>
 </html>

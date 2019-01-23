@@ -199,7 +199,6 @@ public class MainController {
 		return "system/module/addModule";
 	}
 
-	@SuppressWarnings("null")
 	@RequestMapping("/editModule")
 	public String editModule(Map<String, Object> map, Integer id) {
 
