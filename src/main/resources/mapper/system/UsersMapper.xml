@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.mapper.UsersMapper">
+
+	<!-- 查询全部用户信息 -->
+	<select id="selectUserList" resultMap="usersRM">
+		SELECT * FROM user 
+		<where>
+			<if test="startTime!=null and startTime!=''">
+				createTime <![CDATA[>= ]]> #{startTime} 
+			</if>
+			<if test="endTime!=null and endTime!=''">
+				and createTime <![CDATA[<= ]]> #{endTime} 
+			</if>
+			<if test="username!=null and username!=''">
+				and username like concat(concat('%',#{username}),'%') 
+			</if>
+		</where>
+		
+	</select>
+
+	<resultMap type="User" id="usersRM" autoMapping="true">
+		<id column="ID" property="ID" />
+		<!-- <association property="leaders" javaType="User"> <id column="p_id" 
+			property="ID"/> <result column="p_name" property="name"/> </association> -->
+	</resultMap>
+
+	<!-- 根据用户名查询 -->
+	<select id="findUserByUserName" resultMap="usersRM">
+		SELECT * FROM user WHERE userName = #{userName}
+	</select>
+	<!-- 根据用户ID查询用户角色表 -->
+	<select id="findRoleIdByUserId" resultType="String">
+		select role_id from user_role where user_id = #{userId}
+	</select>
+	<!-- 根据userId删除用户角色关联信息 -->
+	<delete id="deleteUserRole">
+		delete from user_role where user_id = #{userId}
+	</delete>
+	<!-- 保存用户角色关联信息 -->
+	<insert id="saveUserRole">
+		insert into user_role (user_id,role_id) values(
+		#{userId},
+		#{roleId}
+		)
+	</insert>
+	
+	<!-- 查询状态 -->
+	<select id="selectStatusById" resultType="String">
+		SELECT status FROM user WHERE ID = #{id}
+	</select>
+	
+	<update id="upodateStatus">
+		update user set status = #{status} where ID = #{id}
+	</update>
+	
+	<!-- 保存 -->
+	<insert id="addUser">
+		insert into user(userName,password,phone,email,createTime,createBy) values(
+		#{username},
+		#{password},
+		#{phone},
+		#{email},
+		#{createTime},
+		#{createBy}
+		)
+	</insert>
+	
+	<!-- 批量删除 -->
+	<delete id="delAll">
+		delete from user  where ID in(
+		<foreach collection="ids" item="id" separator=",">
+			#{id}
+		</foreach>)
+	</delete>
+	
+	<select id="selectUserById" resultMap="usersRM">
+		select * from user where ID = #{id}
+	</select>
+	
+	<update id="editUser">
+		update user set userName=#{username},phone=#{phone},email=#{email},updateTime=#{updateTime},updateBy=#{updateBy} where ID=#{ID}
+	</update>
+	
+</mapper>

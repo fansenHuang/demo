@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.mapper.ModuleMapper">
+
+	<!-- 结果集封装 -->
+	<resultMap type="Module" id="moduleRM" autoMapping="true">
+		<id column="ID" property="ID" />
+		<association property="parentModule" javaType="Module">
+			<id column="p_id" property="ID" />
+			<result column="p_name" property="name" />
+		</association>
+	</resultMap>
+
+	<!-- 查询单个对象 -->
+	<select id="find" resultMap="moduleRM">
+		SELECT * FROM module
+		LEFT JOIN (SELECT ID p_id,name p_name FROM module)p_m ON
+		module.parentId=p_m.p_id
+		WHERE ID = #{moduleId}
+	</select>
+
+
+	<!-- 根据模块ID查询模块名 -->
+	<select id="findModuleNameByModuleId" resultType="String">
+		select name from module where ID in (
+		<foreach collection="list" separator="," item="id">
+			#{id}
+		</foreach>
+		)
+	</select>
+
+	<select id="modulelist" resultMap="moduleRM">
+		SELECT * FROM module
+		LEFT JOIN (SELECT ID p_id,name p_name FROM module)p_m ON
+		module.parentId=p_m.p_id
+		<where>
+			<if test="name!='' and name!=null">
+				name like concat(concat('%',#{name}),'%')
+			</if>
+			<if test="type!=null and type!=''">
+				and type=#{type}
+			</if>
+		</where>
+	</select>
+
+<!-- 批量删除 -->
+	<delete id="delAll">
+		delete from module where ID in(
+		<foreach collection="ids" item="id" separator=",">
+			#{id}
+		</foreach>)
+	</delete>
+
+	<insert id="addModule">
+		insert into module(name,parentId,type,remark,url,createBy,createTime) values(
+			#{name},
+			#{parentModule.ID},
+			#{type},
+			#{remark},
+			#{url},
+			#{createBy},
+			#{createTime}
+		)
+	</insert>
+
+	<select id="selectModuleById" resultMap="moduleRM">
+		select * from module 
+		left join (select ID p_id,name p_name FROM module)p_m on module.parentId=p_m.p_id 
+		 where ID = #{id}
+	</select>
+
+	<update id="saveEditModule">
+		update module set name=#{name},parentId=#{parentModule.ID},type=#{type},remark=#{remark},updateBy=#{updateBy},updateTime=#{updateTime} where ID=#{ID}
+	</update>
+	
+</mapper>

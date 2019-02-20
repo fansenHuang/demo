@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.workPlatfrom.mapper.NoticeManageMapper">
+
+	<resultMap type="Notice" id="NRM">
+		<id column="ID" property="ID" />
+	</resultMap>
+
+	<!-- 查询所有 -->
+	<select id="selectNoticeAll" resultMap="NRM">
+		select * from pm_notice where state <![CDATA[!= ]]>
+		1
+	</select>
+
+	<!-- 添加公告 -->
+	<insert id="andNotice">
+		insert into
+		pm_notice(name,noticeType,createBy,createTime) values(
+		#{name},
+		#{noticeType},
+		#{createBy},
+		#{createTime}
+		)
+	</insert>
+
+	<!-- 搜索查询 -->
+	<select id="selectNoticeBySearch" resultMap="NRM">
+		select * from pm_notice where state <![CDATA[!=]]>
+		1
+		<if test="time!=null and time!=''">
+			and DATE_FORMAT(createTime,'%Y-%m-%d') = #{time}
+		</if>
+		<if test="content!=null and content!=''">
+			and name like CONCAT('%',#{content},'%') or createBy like 
+			CONCAT('%',#{content},'%')
+		</if>
+		
+	</select>
+
+	<!-- 伪删除 -->
+	<update id="deleteNotice">
+		update pm_notice set state = 1 where ID in(
+		<foreach collection="ids" item="id" separator=",">
+			#{id}
+		</foreach>
+		)
+	</update>
+
+	<select id="selectNoticeByID" resultMap="NRM">
+		select * from
+		pm_notice where ID = #{id}
+	</select>
+
+</mapper>

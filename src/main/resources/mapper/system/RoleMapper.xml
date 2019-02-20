@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.mapper.RoleMapper">
+
+<!-- 结果集封装 -->
+<resultMap type="Role" id="roleRM"  autoMapping="true">
+	<id column="ID" property="ID"/>
+</resultMap>
+
+	<!-- 通过角色ID查找所具有的模块权限的模块ID -->
+	<select id="findModuleIdByRoleId" resultType="String">
+		select module_id from role_module where role_id = #{roleId}
+	</select>
+	<!-- 根据角色ID删除角色模块的关联值 -->
+	<delete id="deleteRoleModule">
+		delete from role_module where role_id = #{roleId}
+	</delete>
+	<!-- 保存角色的权限分配 -->
+	<insert id="saveRoleModule">
+		insert into role_module (module_id,role_id) values(
+			#{moduleId},
+			#{roleId}
+		)
+	</insert>
+	
+	<!-- 添加角色 -->
+	<insert id="addRole" parameterType="Role" useGeneratedKeys="true" keyProperty="ID">
+		insert into role(name,remarks,createBy,createTime) values(
+			#{name},
+			#{remarks},
+			#{createBy},
+			#{createTime}
+		)
+	</insert>
+	
+	<!-- 查询满足条件的角色 -->
+	<select id="roleList" resultMap="roleRM">
+		select * from role 
+		<where>
+			<if test="startTime!=null and startTime!=''">
+				createTime <![CDATA[>= ]]> #{startTime} 
+			</if>
+			<if test="endTime!=null and endTime!=''">
+				and createTime <![CDATA[<= ]]> #{endTime} 
+			</if>
+			<if test="name!=null and name!=''">
+				and name like concat(concat('%',#{name}),'%')
+			</if>
+		</where>
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="delAll">
+		delete from role  where ID in(
+		<foreach collection="ids" item="id" separator=",">
+			#{id}
+		</foreach>)
+	</delete>
+	
+	<!-- 查询状态 0 启用 1停用 -->
+	<select id="selectStatusById" resultType="String">
+		select status from role where ID=#{id}
+	</select>
+	
+	<update id="upodateStatus">
+		update role set status=#{status} where ID=#{id}
+	</update>
+	
+	<select id="selectRoleById" resultMap="roleRM">
+		select * from role where ID=#{id}
+	</select>
+	
+	<update id="saveEditRole">
+		update role set name=#{name},remarks=#{remarks},updateBy=#{updateBy},updateTime=#{updateTime} where ID=#{ID}
+			
+	</update>
+	
+	<delete id="updateRoleModule">
+		delete from role_module where role_id=#{id}
+	</delete>
+	
+	<select id="">
+		select name from 
+	</select>
+	
+</mapper>
