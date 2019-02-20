@@ -13,11 +13,6 @@
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="./js/xadmin.js"></script>
-    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
-    <!--[if lt IE 9]>
-      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
-      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
   </head>
   
   <body>
@@ -63,32 +58,10 @@
           <div class="layui-form-item">
               <label class="layui-form-label"><span class="x-red">*</span>角色</label>
               <div class="layui-input-block">
-                <input type="checkbox" name="role" lay-skin="primary" title="超级管理员" checked="">
-                <input type="checkbox" name="role" lay-skin="primary" title="编辑人员">
-                <input type="checkbox" name="role" lay-skin="primary" title="宣传人员" >
+                <input type="checkbox" name="roleId" lay-skin="primary" th:each="role:${roleList}" th:title="${role.name}" th:value="${role.ID}" th:checked="${role.checked}">
+               
               </div>
           </div>
-         <!--  <div class="layui-form-item">
-              <label for="L_pass" class="layui-form-label">
-                  <span class="x-red">*</span>密码
-              </label>
-              <div class="layui-input-inline">
-                  <input type="password" id="L_pass" name="password" required="" lay-verify="pass"
-                  autocomplete="off" class="layui-input">
-              </div>
-              <div class="layui-form-mid layui-word-aux">
-                  6到16个字符
-              </div>
-          </div>
-          <div class="layui-form-item">
-              <label for="L_repass" class="layui-form-label">
-                  <span class="x-red">*</span>确认密码
-              </label>
-              <div class="layui-input-inline">
-                  <input type="password" id="L_repass" name="repass" required="" lay-verify="repass"
-                  autocomplete="off" class="layui-input">
-              </div>
-          </div> -->
           <div class="layui-form-item">
               <label for="L_repass" class="layui-form-label">
               </label>
@@ -126,15 +99,16 @@
                 type: data.form.method,
                 data: $(data.form).serialize(),
          		  success:function(){
-         			 parent.location.href="/userlist";
+         			 //parent.location.href="/userlist";
          			 layer.alert("编辑成功", {icon: 6},function () {
                          // 获得frame索引
                          var index = parent.layer.getFrameIndex(window.name);
                          //关闭当前frame
-                         parent.layer.close(index);    
+                         parent.layer.close(index);
                      });
          		  }
          	  });
+            
             return false;
           });
           

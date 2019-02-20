@@ -32,7 +32,7 @@ public interface UsersMapper {
 	 * 
 	 * @param userId
 	 */
-	public void deleteUserRole(String userId);
+	public void deleteUserRole(Integer userId);
 
 	/**
 	 * 保存用户角色关联信息
@@ -40,7 +40,7 @@ public interface UsersMapper {
 	 * @param userId
 	 * @param roleId
 	 */
-	public void saveUserRole(@Param("userId") String userId, @Param("roleId") String roleId);
+	public void saveUserRole(@Param("userId") Integer userId, @Param("roleId") Integer roleId);
 
 	List<User> selectUserList(@Param("startTime")String start, @Param("endTime")String end, @Param("username")String username);
 
@@ -51,7 +51,7 @@ public interface UsersMapper {
 	void upodateStatus(@Param("id")Integer id, @Param("status")Integer status);
 
 	//增加用户
-	void addUser(User user);
+	int addUser(User user);
 
 	//批量删除
 	void delAll(@Param("ids")String[] ids);

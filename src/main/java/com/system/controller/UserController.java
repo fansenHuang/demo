@@ -8,6 +8,7 @@ import javax.servlet.ServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.core.util.MD5Hash;
@@ -45,9 +46,15 @@ public class UserController {
 
 	// 增加用户
 	@RequestMapping("addUser")
-	public String andUser(User user) {
+	public String andUser(User user,@RequestParam(value="roleId",required=false)Integer[] roleIds) {
+		
+		
 		user.setPassword(MD5Hash.getMd5HashPasswod(user.getPassword(), user.getUsername()));
 		userService.addUser(user);
+		if (roleIds!=null&&roleIds.length>0) {
+			userService.saveUserRole(roleIds,user.getID());
+		}
+		
 		return "redirect:/userlist";
 
 	}
@@ -65,9 +72,13 @@ public class UserController {
 	// 编辑
 	@ResponseBody
 	@RequestMapping("editUser")
-	public String editUser(User user) {
+	public String editUser(User user,@RequestParam(value="roleId",required=false)Integer[] roleIds) {
 		
 		userService.editUser(user);
+		if (roleIds.length>0) {
+
+			userService.saveUserRole(roleIds, user.getID());
+		}
 
 		return "redirect:/userlist";// ajax请求，不会重定向
 	}

@@ -55,7 +55,7 @@
 	</update>
 	
 	<!-- 保存 -->
-	<insert id="addUser">
+	<insert id="addUser" parameterType="User" useGeneratedKeys="true" keyProperty="ID">
 		insert into user(userName,password,phone,email,createTime,createBy) values(
 		#{username},
 		#{password},

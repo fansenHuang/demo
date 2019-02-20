@@ -64,10 +64,27 @@ public class MainController {
     
     @RequestMapping("/userEdit")
     public String edit(Map<String, Object> map,Integer id){
+    	
     	User user= userService.selectUserById(id);
-    	user.setPassword(MD5Hash.getMd5HashPasswod(user.getPassword(), user.getUsername()));
+    	List<String> roLeIds = userService.findRoleIdByUserId(user.getID().toString());
+    	
+    	List<Role> roleList = roleService.roleList(null, null, null);
+    	
+    	if (roLeIds!=null&&roLeIds.size()>0) {
+			
+    		for (String roleId : roLeIds) {
+    			for (Role role : roleList) {
+    				if (roleId.equals(role.getID().toString())) {
+    					role.setChecked(true);
+    				}
+    			}
+    		}
+    		
+		}
     	map.put("user", user);
-        return "system/user/userEdit";
+    	map.put("roleList", roleList);
+    	
+        return "system/user/userEdit";       
     }
     
     @RequestMapping("/addUser")

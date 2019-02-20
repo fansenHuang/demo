@@ -15,7 +15,7 @@ public interface UserService {
 
 	List<String> findRoleIdByUserId(String userId);
 
-	void saveUserRole(String[] roleIds, String userId);
+	void saveUserRole(Integer[] roleIds, Integer userId);
 
 	//查询状态 是否启用
 	String selectStatusById(Integer id);
@@ -24,7 +24,7 @@ public interface UserService {
 	void upodateStatus(Integer id, Integer status);
 
 	//增加用户
-	void addUser(User user);
+	int addUser(User user);
 
 	//批量删除
 	void delAll(String[] ids);

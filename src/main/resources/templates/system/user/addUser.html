@@ -60,7 +60,7 @@
 			<div class="layui-form-item">
 				<label class="layui-form-label"><span class="x-red">*</span>角色</label>
 				<div class="layui-input-block">
-					<input type="checkbox" name="role" lay-skin="primary" th:each="role:${rolelist}" th:title="${role.name}" th:value="${role.ID}">
+					<input type="checkbox" name="roleId" lay-skin="primary" th:each="role:${rolelist}" th:title="${role.name}" th:value="${role.ID}">
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -124,10 +124,10 @@
                          var index = parent.layer.getFrameIndex(window.name);
                          //关闭当前frame
                          parent.layer.close(index);
+                         parent.location.href='/userlist';
                      });
          		  }
          	  });
-           
             return false;
           });
           

@@ -63,9 +63,10 @@ public class UserServerImpl implements UserService {
 	}
 
 	@Override
-	public void saveUserRole(String[] roleIds, String userId) {
-		usersMapper.deleteUserRole(userId);
-		for (String roleId : roleIds) {
+	public void saveUserRole(Integer[] roleIds, Integer userId) {
+		usersMapper.deleteUserRole(userId);//重新编辑的时候 起作用 
+		
+		for (Integer roleId : roleIds) {
 			usersMapper.saveUserRole(userId, roleId);
 		}
 
@@ -91,11 +92,11 @@ public class UserServerImpl implements UserService {
 	}
 	
 	@Override
-	public void addUser(User user) {
+	public int addUser(User user) {
 		User user1 = (User)SecurityUtils.getSubject().getPrincipal();
 		user.setCreateBy(user1.getUsername());
 		user.setCreateTime(new Date());
-		usersMapper.addUser(user);
+		return usersMapper.addUser(user);
 	}
 
 	@Override

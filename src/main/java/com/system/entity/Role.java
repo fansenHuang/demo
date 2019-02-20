@@ -5,7 +5,7 @@ public class Role extends BaseEntity {
 	private String remarks;// 描述
 	private Integer status;// 状态 0启用 1停用 
 
-	private String checked; // 为了实现回显 true/false
+	private Boolean checked = false; // 为了实现回显 true/false
 	
 	public String getName() {
 		return name;
@@ -23,15 +23,16 @@ public class Role extends BaseEntity {
 		this.remarks = remarks;
 	}
 
-	public String getChecked() {
+
+	
+
+	public Boolean getChecked() {
 		return checked;
 	}
 
-	public void setChecked(String checked) {
+	public void setChecked(Boolean checked) {
 		this.checked = checked;
 	}
-
-	
 
 	public Integer getStatus() {
 		return status;
