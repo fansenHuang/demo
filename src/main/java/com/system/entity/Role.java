@@ -1,5 +1,11 @@
 package com.system.entity;
 
+/**
+ * 角色-实体类
+ * @author wendong
+ *
+ * 2019年2月22日
+ */
 public class Role extends BaseEntity {
 	private String name;// 角色名
 	private String remarks;// 描述
