@@ -1,29 +1,21 @@
 package com.system.service.impl;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import javax.annotation.Resource;
-
-import org.apache.shiro.SecurityUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.system.entity.User;
 import com.system.mapper.ModuleMapper;
 import com.system.mapper.RoleMapper;
 import com.system.mapper.UsersMapper;
 import com.system.service.UserService;
+import org.apache.shiro.SecurityUtils;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.*;
 
 @Service
-public class UserServerImpl implements UserService {
+public class UserServerImpl  extends ServiceImpl<UsersMapper, User> implements UserService  {
 
-    @Autowired
-    private UsersMapper usersMapper;
-    
 	@Resource
 	private RoleMapper roleMapper;
 
@@ -36,7 +28,7 @@ public class UserServerImpl implements UserService {
 	 */
 	@Override
 	public Set<String> findModuleListById(String userId) {
-		List<String> roleList = usersMapper.findRoleIdByUserId(userId);
+		List<String> roleList = this.baseMapper.findRoleIdByUserId(userId);
 		Set<String> moduleIdsSet = new HashSet<>();
 		for (String roleId : roleList) {
 			moduleIdsSet.addAll(roleMapper.findModuleIdByRoleId(roleId));
@@ -52,77 +44,79 @@ public class UserServerImpl implements UserService {
 	 */
 	@Override
 	public User findUserByUserName(String userName) {
-
-		return usersMapper.findUserByUserName(userName);
+        QueryWrapper<User> weapper = new QueryWrapper<>();
+        weapper.eq("user_name", userName);
+		return this.getOne(weapper);
 	}
 
 	@Override
 	public List<String> findRoleIdByUserId(String userId) {
 
-		return usersMapper.findRoleIdByUserId(userId);
+		return this.baseMapper.findRoleIdByUserId(userId);
 	}
 
 	@Override
 	public void saveUserRole(Integer[] roleIds, Integer userId) {
-		usersMapper.deleteUserRole(userId);//重新编辑的时候 起作用 
-		
+		//重新编辑的时候 起作用
+		this.baseMapper.deleteUserRole(userId);
+
 		for (Integer roleId : roleIds) {
-			usersMapper.saveUserRole(userId, roleId);
+			this.baseMapper.saveUserRole(userId, roleId);
 		}
 
 	}
 
 	@Override
 	public List<User> userList(String start, String end, String username) {
-		return usersMapper.selectUserList(start,end,username);
+		return this.baseMapper.selectUserList(start,end,username);
 	}
 
-	
+
 	@Override
 	public String selectStatusById(Integer id) {
-		
-		return usersMapper.selectStatusById(id);
+
+		return this.baseMapper.selectStatusById(id);
 	}
 
-	
+
 	@Override
 	public void upodateStatus(Integer id, Integer status) {
-		
-		usersMapper.upodateStatus(id,status);
+
+		this.baseMapper.upodateStatus(id,status);
 	}
-	
+
 	@Override
 	public int addUser(User user) {
 		User user1 = (User)SecurityUtils.getSubject().getPrincipal();
-		user.setCreateBy(user1.getUsername());
+		user.setCreateBy(user1.getUserName());
 		user.setCreateTime(new Date());
-		return usersMapper.addUser(user);
+		return this.baseMapper.addUser(user);
 	}
 
 	@Override
 	public void delAll(String[] ids) {
-		
-		usersMapper.delAll(ids);
+
+		this.baseMapper.delAll(ids);
 	}
 
 	@Override
 	public User selectUserById(Integer id) {
-		
-		return usersMapper.selectUserById(id);
+
+		return this.baseMapper.selectUserById(id);
 	}
 
 	@Override
 	public void editUser(User user) {
 		User loginUser = (User)SecurityUtils.getSubject().getPrincipal();
-		user.setUpdateBy(loginUser.getUsername());
+		user.setUpdateBy(loginUser.getUserName());
 		user.setUpdateTime(new Date());
-		usersMapper.editUser(user);
+		this.baseMapper.editUser(user);
 	}
 
 	@Override
 	public Set<String> selectRole() {
-		
-		return usersMapper.selectRole();
+
+		return this.baseMapper.selectRole();
 	}
 
 }

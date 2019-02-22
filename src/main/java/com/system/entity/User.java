@@ -1,72 +1,38 @@
 package com.system.entity;
 
-import org.assertj.core.internal.Integers;
-import org.springframework.http.StreamingHttpOutputMessage;
+import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-//用户详情
+/**
+ * <p>用户详情</p>
+ *
+ * @author liwei
+ * @date 2019/2/22 14:43
+ **/
+@Getter
+@Setter
+@ToString
+@TableName(value = "user")
 public class User extends BaseEntity {
 	 
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -8044013948470887797L;
 
-	private String username;//用户名
- 
-    private String password;//密码
-    
-    private String phone;//手机号
-    
-    private String email;//邮箱
-    
-    private Integer status;//状态 0 停用  1 启用
-    
-	public String getPhone() {
-		return phone;
-	}
+    @ApiModelProperty(value = "用户名")
+	private String userName;
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+    @ApiModelProperty(value = "密码")
+    private String password;
 
-	public String getEmail() {
-		return email;
-	}
+    @ApiModelProperty(value = "手机号")
+    private String phone;
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    @ApiModelProperty(value = "邮箱")
+    private String email;
 
-	public Integer getStatus() {
-		return status;
-	}
-
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	@Override
-	public String toString() {
-		return "User [username=" + username + ", password=" + password + ", phone=" + phone + ", email=" + email
-				+ ", status=" + status + "]";
-	}
- 
-
+    @ApiModelProperty(value = "状态 0 停用  1 启用")
+    private Integer status;
 
 }

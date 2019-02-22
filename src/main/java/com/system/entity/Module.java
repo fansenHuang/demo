@@ -1,74 +1,48 @@
 package com.system.entity;
 
-public class Module extends BaseEntity {
+import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.*;
 
-	private String name;// 模块名称
-	private Module parentModule;// 父模块
-	private String type;// 模块类型 1主菜单 2左侧菜单 3按钮 。。。
-	private String remark;// 描述
-	private String url;//路径
-	private String checked;//是否被选中
-	
-	public String getChecked() {
-		return checked;
-	}
+/**
+ * <p>模块表对象</p>
+ * @author liwei
+ */
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@TableName(value = "module")
+public class Module extends BaseEntity<Module> {
 
-	public void setChecked(String checked) {
-		this.checked = checked;
-	}
 
-	public String getUrl() {
-		return url;
-	}
+	@ApiModelProperty(value = "模块名称")
+	private String name;
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
+	@ApiModelProperty(value = "父模块")
+	private Module parentModule;
 
-	// 为Ztree树 展现层级结构
+	@ApiModelProperty(value = "模块类型 1主菜单 2左侧菜单 3按钮 。。。")
+	private String type;
+
+	@ApiModelProperty(value = "描述")
+	private String remark;
+
+	@ApiModelProperty(value = "路径")
+	private String url;
+
+	@ApiModelProperty(value = "是否被选中")
+	private String checked;
+
+	/**
+	 * 为Ztree树 展现层级结构
+	 * @return	Integer
+	 */
 	public Integer getpId() {
 		if (parentModule != null) {
 			return parentModule.getID();
 		}
 		return null;
 	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-public Module getParentModule() {
-		return parentModule;
-	}
-
-	public void setParentModule(Module parentModule) {
-		this.parentModule = parentModule;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-	
-	public String getRemark() {
-		return remark;
-	}
-
-	public void setRemark(String remark) {
-		this.remark = remark;
-	}
-
-	@Override
-	public String toString() {
-		return "Module [name=" + name + ", parentModule=" + parentModule + ", type=" + type + ", remark=" + remark
-				+ ", url=" + url + "]";
-	}
-	
 }

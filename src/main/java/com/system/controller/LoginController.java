@@ -1,5 +1,8 @@
 package com.system.controller;
 
+import com.system.entity.User;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -8,20 +11,28 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.system.entity.User;
-
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
+/**
+ * <p>登录相关操作接口定义类</p>
+ *
+ * @author liwei
+ **/
 @Controller
-public class LoginController {
-	
+@Api(description = "新闻相关操作接口定义类")
+public class LoginController{
+
+    /**
+     * 登录页面跳转
+     * @return  url
+     */
     @RequestMapping("/login")
     public String login() {
         return "login";
     }
 
+    @ApiOperation(value = "登录")
     @RequestMapping("/loginUser")
     public String loginUser(Map<String, Object> map,String username,String password,HttpSession session,Model model) {
         //授权认证
@@ -39,21 +50,19 @@ public class LoginController {
             return "index";
         } catch(AuthenticationException e) {
         	//用户名或密码错误
-        	
         	model.addAttribute("msg", "用户名或密码错误");
-        	
-            return "login";//返回登录页面
+            //返回登录页面
+            return "login";
         }
         
     }
-    
+
+    @ApiOperation(value = "退出")
     @RequestMapping("/logOut")
     public String logOut(HttpSession session) {
-    	
     	session.removeAttribute("user");
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
         return "login";
-        
     }
 }

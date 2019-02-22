@@ -1,34 +1,29 @@
 package com.system.entity;
 
 
+import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.*;
+
+/**
+ * <p>部门表对象</p>
+ * @author liwei
+ */
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@TableName(value = "dept")
 public class Dept {
 
-	private Integer id;//部门id
-	private String name;//部门名称
-	private Integer pId;//上级部门id
-	
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public Integer getpId() {
-		return pId;
-	}
-	public void setpId(Integer pId) {
-		this.pId = pId;
-	}
-	@Override
-	public String toString() {
-		return "Dept [id=" + id + ", name=" + name + ", pId=" + pId + "]";
-	}
-	
+    @ApiModelProperty(value = "部门id")
+	private Integer id;
+
+    @ApiModelProperty(value = "部门名称")
+	private String name;
+
+    @ApiModelProperty(value = "上级部门id")
+	private Integer pId;
 	
 }

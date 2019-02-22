@@ -3,13 +3,16 @@ package com.system.mapper;
 import java.util.List;
 import java.util.Set;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.system.entity.User;
 
+@Mapper
 @Repository
-public interface UsersMapper {
+public interface UsersMapper extends BaseMapper<User> {
    
 	/**
 	 * 根据用户名查询用户

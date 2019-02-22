@@ -3,54 +3,52 @@ package com.system.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.*;
 
-//抽象类
-public abstract class BaseEntity implements Serializable {
-	private Integer ID;// 主键
-	private String createBy;// 创建人
-	private String updateBy;// 更新人
-	private Date createTime;// 创建时间
-	private Date updateTime;// 更新时间
+/**
+ * <p>关系型数据库基础通用列实体类</p>
+ * @author liwei
+ */
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+public abstract class BaseEntity<T extends Model<T>>extends Model<T> implements Serializable {
 
-	public Integer getID() {
-		return ID;
+	@ApiModelProperty(value = "主键（不用填写）", hidden = true)
+	@TableField(fill = FieldFill.INSERT)
+	private Integer ID;
+
+	@ApiModelProperty(value = "创建人（不用填写）", hidden = true)
+	@TableField(fill = FieldFill.INSERT)
+	private String createBy;
+
+	@ApiModelProperty(value = "更新人（不用填写）", hidden = true)
+	@TableField(fill = FieldFill.UPDATE)
+	private String updateBy;
+
+	@ApiModelProperty(value = "创建时间（不用填写）", hidden = true)
+	@TableField(fill = FieldFill.INSERT)
+	private Date createTime;
+
+	@ApiModelProperty(value = "更新时间（不用填写）", hidden = true)
+	@TableField(fill = FieldFill.UPDATE)
+	private Date updateTime;
+
+	/**
+	 * 设置主键
+	 */
+	@Override
+	protected Serializable pkVal() {
+		return this.ID;
 	}
 
-	public void setID(Integer iD) {
-		ID = iD;
-	}
-
-	public String getCreateBy() {
-		return createBy;
-	}
-
-	public void setCreateBy(String createBy) {
-		this.createBy = createBy;
-	}
-
-	public String getUpdateBy() {
-		return updateBy;
-	}
-
-	public void setUpdateBy(String updateBy) {
-		this.updateBy = updateBy;
-	}
-
-	public Date getCreateTime() {
-		return createTime;
-	}
-
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
-
-	public Date getUpdateTime() {
-		return updateTime;
-	}
-
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
 
 }

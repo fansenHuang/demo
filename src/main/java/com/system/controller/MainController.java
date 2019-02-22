@@ -1,18 +1,5 @@
 package com.system.controller;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
-
-import javax.annotation.Resource;
-
-import org.apache.shiro.SecurityUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -22,6 +9,17 @@ import com.system.entity.User;
 import com.system.service.ModuleService;
 import com.system.service.RoleService;
 import com.system.service.UserService;
+import org.apache.shiro.SecurityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.annotation.Resource;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * 本来想经过这里 静态页面跳转的 ，现在写乱了，先保留着
@@ -29,7 +27,7 @@ import com.system.service.UserService;
  *
  */
 @Controller
-public class MainController {
+public class MainController{
 
 	@RequestMapping("/welcome")
 	public String welcome(Map<String, Object> map) throws JsonProcessingException {
