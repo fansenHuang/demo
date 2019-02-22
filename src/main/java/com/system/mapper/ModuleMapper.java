@@ -14,7 +14,7 @@ public interface ModuleMapper {
 
 	Module find(String moduleId);
 	
-	Set<String> findModuleNameByModuleId(List<String> moduleIdsList);
+	Set<String> findModuleNameByModuleId(List<String> moduleIds);
 
 	List<Module> modulelist(@Param("name")String name, @Param("type")String type);
 

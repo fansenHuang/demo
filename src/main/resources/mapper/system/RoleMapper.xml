@@ -72,15 +72,10 @@
 	
 	<update id="saveEditRole">
 		update role set name=#{name},remarks=#{remarks},updateBy=#{updateBy},updateTime=#{updateTime} where ID=#{ID}
-			
 	</update>
 	
 	<delete id="updateRoleModule">
 		delete from role_module where role_id=#{id}
 	</delete>
-	
-	<select id="">
-		select name from 
-	</select>
 	
 </mapper>

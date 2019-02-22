@@ -1,6 +1,7 @@
 package com.system.service;
 
 import java.util.List;
+import java.util.Set;
 
 import com.system.entity.Role;
 
@@ -8,7 +9,7 @@ public interface RoleService {
 
 	int addRole(Role role);
 
-	void addRoleModule(String id, String moduleId);
+	void addRoleModule(String id, String[] moduleIds);
 
 	//查询所有角色
 	List<Role> roleList(String start, String end, String name);
@@ -28,5 +29,9 @@ public interface RoleService {
 	void saveEditRole(Role role);
 
 	void updateRoleModule(Integer id);
+
+	List<String> findModuleIdByRoleId(Integer id);
+
+	Set<String> findModuleName(Integer id);
 	 
 }

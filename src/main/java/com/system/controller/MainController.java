@@ -1,5 +1,7 @@
 package com.system.controller;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -108,9 +110,20 @@ public class MainController {
         
     	PageHelper.startPage(page, 6);
     	List<Role> roleList = roleService.roleList(start, end, name);
-    	System.out.println("MaiController.role()"+name);
+    	
     	PageInfo<Role> pageInfo = new PageInfo<>(roleList);
     	
+    	
+    	for (Role role : roleList) {
+    		
+    		Set<String> moduleNames = roleService.findModuleName(role.getID());
+    		if (moduleNames==null) {
+    			role.setRoleRule("");
+			}else{
+				role.setRoleRule(moduleNames.toString());
+			}
+    		
+		}
     	map.put("pageInfo", pageInfo);
     	map.put("userList", roleList);
     	
@@ -132,7 +145,7 @@ public class MainController {
     	map.put("role", role);
         return "system/role/editRole";
     }
-    
+   
     @Resource
     private ModuleService moduleService;
     

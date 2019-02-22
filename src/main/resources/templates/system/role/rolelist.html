@@ -79,7 +79,7 @@
       </div>
       <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('添加用户','addRole')"><i class="layui-icon"></i>添加</button>
+        <button class="layui-btn" onclick="x_admin_show('添加角色','addRole')"><i class="layui-icon"></i>添加</button>
         <span class="x-right" style="line-height:40px">共有数据：<td th:text="${pageInfo.total}"></td> 条</span>
       </xblock>
       <table class="layui-table">
@@ -103,7 +103,7 @@
             </td>
             <td th:text="${role.ID}"></td>
             <td th:text="${role.name}"></td>
-            <td>所具有的权限</td>
+            <td th:text="${role.roleRule}"></td>
             <td th:text="${role.remarks}"></td>
             <td th:text="${#dates.format(role.createTime, 'yyyy-MM-dd')}"></td>
             <td class="td-status">
@@ -128,6 +128,9 @@
               </a>
               <a title="删除" th:onclick="'javascript:member_del('+this+','+${role.ID}+')'" href="javascript:;">
                 <i class="layui-icon">&#xe640;</i>
+              </a>
+              <a title="权限"  th:onclick="'javascript:x_admin_show('+'\'角色权限\''+','+'\''+'role/addRoleModule?id='+${role.ID }+'\''+')'" href="javascript:;">
+                <i class="layui-icon">&#xe654;</i>
               </a>
             </td>
           </tr>

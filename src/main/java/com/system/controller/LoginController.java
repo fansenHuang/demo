@@ -44,7 +44,7 @@ public class LoginController {
         	
             return "login";//返回登录页面
         }
-
+        
     }
     
     @RequestMapping("/logOut")

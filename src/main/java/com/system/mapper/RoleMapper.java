@@ -16,7 +16,7 @@ public interface RoleMapper {
 	 * @param roleId
 	 * @return
 	 */
-	List<String> findModuleIdByRoleId(String roleId);
+	List<String> findModuleIdByRoleId(@Param("roleId")String roleId);
 
 	/**
 	 * 保存角色的权限分配

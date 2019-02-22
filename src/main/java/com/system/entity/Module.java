@@ -6,8 +6,17 @@ public class Module extends BaseEntity {
 	private Module parentModule;// 父模块
 	private String type;// 模块类型 1主菜单 2左侧菜单 3按钮 。。。
 	private String remark;// 描述
-	private String url;
+	private String url;//路径
+	private String checked;//是否被选中
 	
+	public String getChecked() {
+		return checked;
+	}
+
+	public void setChecked(String checked) {
+		this.checked = checked;
+	}
+
 	public String getUrl() {
 		return url;
 	}
@@ -17,12 +26,12 @@ public class Module extends BaseEntity {
 	}
 
 	// 为Ztree树 展现层级结构
-//	public Integer getpId() {
-//		if (parentModule != null) {
-//			return parentModule.getID();
-//		}
-//		return null;
-//	}
+	public Integer getpId() {
+		if (parentModule != null) {
+			return parentModule.getID();
+		}
+		return null;
+	}
 
 	public String getName() {
 		return name;

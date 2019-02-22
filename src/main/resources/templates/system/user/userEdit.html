@@ -66,7 +66,7 @@
               <label for="L_repass" class="layui-form-label">
               </label>
               <button  class="layui-btn" lay-filter="add" lay-submit="">
-                  编辑
+                  保存
               </button>
           </div>
       </form>
@@ -100,7 +100,7 @@
                 data: $(data.form).serialize(),
          		  success:function(){
          			 //parent.location.href="/userlist";
-         			 layer.alert("编辑成功", {icon: 6},function () {
+         			 layer.alert("保存成功", {icon: 6},function () {
                          // 获得frame索引
                          var index = parent.layer.getFrameIndex(window.name);
                          //关闭当前frame

@@ -4,6 +4,15 @@ public class Role extends BaseEntity {
 	private String name;// 角色名
 	private String remarks;// 描述
 	private Integer status;// 状态 0启用 1停用 
+	private String roleRule;
+	
+	public String getRoleRule() {
+		return roleRule;
+	}
+
+	public void setRoleRule(String roleRule) {
+		this.roleRule = roleRule;
+	}
 
 	private Boolean checked = false; // 为了实现回显 true/false
 	

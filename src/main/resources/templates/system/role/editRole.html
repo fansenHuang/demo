@@ -29,48 +29,6 @@
                     </div>
                 </div>
                 <div class="layui-form-item layui-form-text">
-                    <label class="layui-form-label">
-                        拥有权限
-                    </label>
-                    <table  class="layui-table layui-input-block">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <input type="checkbox" name="moduleId" lay-skin="primary" value="123" title="用户管理">
-                                </td>
-                                <td>
-                                    <div class="layui-input-block">
-                                        <input name="moduleId" lay-skin="primary" type="checkbox" title="用户停用" value="2"> 
-                                        <input name="moduleId" lay-skin="primary" type="checkbox" value="2" title="用户删除"> 
-                                        <input name="moduleId" lay-skin="primary" type="checkbox" value="2" title="用户修改"> 
-                                        <input name="moduleId" lay-skin="primary" type="checkbox" value="2" title="用户改密"> 
-                                        <input name="moduleId" lay-skin="primary" type="checkbox" value="2" title="用户列表">
-                                        <input name="moduleId" lay-skin="primary" type="checkbox" value="2" title="用户改密"> 
-                                        <input name="moduleId" lay-skin="primary" type="checkbox" value="2" title="用户列表">
-                                        <input name="moduleId" lay-skin="primary" type="checkbox" value="2" title="用户改密"> 
-                                        <input name="moduleId" lay-skin="primary" type="checkbox" value="2" title="用户列表"> 
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                   
-                                    <input name="moduleId" lay-skin="primary" type="checkbox" value="2" title="文章管理">
-                                </td>
-                                <td>
-                                    <div class="layui-input-block">
-                                        <input name="moduleId" lay-skin="primary" type="checkbox" value="2" title="文章添加"> 
-                                        <input name="moduleId" lay-skin="primary" type="checkbox" value="2" title="文章删除"> 
-                                        <input name="moduleId" lay-skin="primary" type="checkbox" value="2" title="文章修改"> 
-                                        <input name="moduleId" lay-skin="primary" type="checkbox" value="2" title="文章改密"> 
-                                        <input name="moduleId" lay-skin="primary" type="checkbox" value="2" title="文章列表"> 
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="layui-form-item layui-form-text">
                     <label for="desc" class="layui-form-label">
                         描述
                     </label>
@@ -79,7 +37,7 @@
                     </div>
                 </div>
                 <div class="layui-form-item">
-                <button class="layui-btn" lay-submit="" lay-filter="add">增加</button>
+                <button class="layui-btn" lay-submit="" lay-filter="add">保存</button>
               </div>
             </form>
     </div>
@@ -88,22 +46,7 @@
             $ = layui.jquery;
           var form = layui.form
           ,layer = layui.layer;
-        
-          //自定义验证规则
-          form.verify({
-            nikename: function(value){
-              if(value.length < 5){
-                return '昵称至少得5个字符啊';
-              }
-            }
-            ,pass: [/(.+){6,12}$/, '密码必须6到12位']
-            ,repass: function(value){
-                if($('#L_pass').val()!=$('#L_repass').val()){
-                    return '两次密码不一致';
-                }
-            }
-          });
-
+          
           //监听提交
           form.on('submit(add)', function(data){
         	  $.ajax({
@@ -111,7 +54,7 @@
                   type: data.form.method,
                   data: $(data.form).serialize(),
            		  success:function(){
-           			 layer.alert("增加成功", {icon: 6},function () {
+           			 layer.alert("保存成功", {icon: 6},function () {
            				parent.location.href="/rolelist";
                          // 获得frame索引
                          var index = parent.layer.getFrameIndex(window.name);

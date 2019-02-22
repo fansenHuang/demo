@@ -24,7 +24,7 @@
 	<select id="findModuleNameByModuleId" resultType="String">
 		select name from module where ID in (
 		<foreach collection="list" separator="," item="id">
-			#{id}
+			 #{id} 
 		</foreach>
 		)
 	</select>
