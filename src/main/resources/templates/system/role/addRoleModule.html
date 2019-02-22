@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+  <head>
+    <meta charset="UTF-8">
+    <title>欢迎页面-X-admin2.0</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../css/font.css">
+    <link rel="stylesheet" href="../css/xadmin.css">
+    
+    <link rel="stylesheet" href="../zTree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../js/xadmin.js"></script>
+    <script type="text/javascript" src="../zTree/js/jquery.ztree.all.min.js"></script>
+  	<!-- <script type="text/javascript" src="../zTree/js/jquery.ztree.excheck.js"></script> -->
+  </head>
+  
+  <body>
+    <div class="x-body">
+        <form action="saveRoleModule" method="post" class="layui-form layui-form-pane">
+       	 		<input type="hidden" name="ID"  th:value="${id}"></input>
+        		<input type="hidden" id="moduleIds" name="moduleIds" />       
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">
+                        选择权限
+                    </label>
+                    <table  class="layui-table layui-input-block">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="layui-input-block">
+                                        <ul id="htZtree" class="ztree"></ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="layui-form-item">
+                <button class="layui-btn" lay-submit="" lay-filter="add">确定</button>
+              </div>
+            </form>
+    </div>
+    <script th:inline="javascript" >
+    
+    //-----------------------------------------------ztree------------------------------------------------
+    //var zTreeObj;
+   // zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）
+   var setting = {
+		   check: {
+				enable: true,
+				chkStyle: "checkbox",
+				chkboxType: { "Y": "p", "N": "s" } 
+			},
+	       data: {
+				simpleData: {
+					enable: true
+				}
+			}
+   };
+   // zTree 的数据属性，深入使用请参考 API 文档（zTreeNode 节点数据详解）
+   var zNodes = [[${moduleList}]];
+   
+   $(document).ready(function(){
+	   $.fn.zTree.init($("#htZtree"), setting, zNodes);
+		
+		var zTreeObj = $.fn.zTree.getZTreeObj("htZtree");
+		
+		zTreeObj.expandAll(true);	
+   });
+   
+	//获取到所以用户选中的节点id值
+	//获取所有选择的节点，提交时调用下面函数
+	function submitCheckedNodes(treeNode) {
+		
+	}
+    
+   //---------------------------------layui-----------------------
+        layui.use(['form','layer'], function(){
+            $ = layui.jquery;
+          var form = layui.form
+          ,layer = layui.layer;
+       	  
+          //监听提交
+          form.on('submit(add)', function(data){
+        	 var nodes = new Array();
+      		var zTreeObj = $.fn.zTree.getZTreeObj("htZtree");
+      		nodes = zTreeObj.getCheckedNodes(true);		//取得选中的结点
+      		var str = "";
+      		for (i = 0; i < nodes.length; i++) {
+      			if (str != "") {
+      				str += ",";
+      			}
+      			str += nodes[i].id;
+      		}
+      		
+      		$('#moduleIds').val(str);		//将拼接完成的字符串放入隐藏域，这样就可以通过post提交
+      		
+        	  $.ajax({
+              	url: data.form.action,
+                  type: data.form.method,
+                  data: $(data.form).serialize(),
+           		  success:function(){
+           			 layer.alert("增加成功", {icon: 6},function () {
+           				parent.location.href="/rolelist";
+                         // 获得frame索引
+                         var index = parent.layer.getFrameIndex(window.name);
+                         //关闭当前frame
+                         parent.layer.close(index);
+                     });
+           		  }
+           	  });
+           
+            return false;
+          });
+          
+        });
+        
+    </script>
+  </body>
+
+</html>
