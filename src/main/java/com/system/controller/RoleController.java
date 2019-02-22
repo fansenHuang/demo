@@ -17,6 +17,12 @@ import com.system.entity.Role;
 import com.system.service.ModuleService;
 import com.system.service.RoleService;
 
+/**
+ * 角色
+ * @author wendong
+ *
+ * 2019年2月22日
+ */
 @Controller
 @RequestMapping("/role/")
 public class RoleController {

@@ -5,7 +5,13 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-//抽象类
+
+/**
+ * 实体类继承这个类
+ * @author wendong
+ *
+ * 2019年2月22日
+ */
 public abstract class BaseEntity implements Serializable {
 	private Integer ID;// 主键
 	private String createBy;// 创建人

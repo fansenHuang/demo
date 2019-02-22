@@ -4,6 +4,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * 
+ * @author wendong
+ *
+ * 2019年2月22日
+ */
 public class DBInfoUtils {
 
 	public DBInfoUtils(String properties) {

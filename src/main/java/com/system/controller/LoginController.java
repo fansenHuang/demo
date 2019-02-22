@@ -14,6 +14,12 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+/**
+ * 登陆有关
+ * @author wendong
+ *
+ * 2019年2月22日
+ */
 @Controller
 public class LoginController {
 	
@@ -42,7 +48,7 @@ public class LoginController {
         	
         	model.addAttribute("msg", "用户名或密码错误");
         	
-            return "login";//返回登录页面
+            return "login";
         }
         
     }

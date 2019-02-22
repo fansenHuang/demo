@@ -24,7 +24,7 @@ import com.system.service.RoleService;
 import com.system.service.UserService;
 
 /**
- * 本来想经过这里 静态页面跳转的 ，现在写乱了，先保留着
+ * 本来只是想只做跳转的。。。
  * @author Administrator
  *
  */
@@ -166,7 +166,9 @@ public class MainController {
 		map.put("type", type);
 
 		Module module2 = new Module();
-		module2.setName("");// 如果父级不存在，填充"",页面不用做判断了
+		
+		// 如果父级不存在，填充"",页面不用做判断了
+		module2.setName("");
 		for (Module module : modulelist) {
 			if (module.getParentModule() == null) {
 

@@ -11,6 +11,12 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * 
+ * @author wendong
+ *
+ * 2019年2月22日
+ */
 public class FileDownUtils {
 	
 	

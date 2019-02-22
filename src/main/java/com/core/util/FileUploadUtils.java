@@ -13,6 +13,12 @@ import org.springframework.web.multipart.MultipartFile;
 import com.core.util.DBInfoUtils;
 import com.system.config.ParametersConfig;
 
+/**
+ * 
+ * @author wendong
+ *
+ * 2019年2月22日
+ */
 public class FileUploadUtils {
 
 	public static File upload(MultipartFile file, String rootPath,HttpServletRequest request) throws IOException {

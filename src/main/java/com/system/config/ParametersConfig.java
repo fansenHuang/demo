@@ -4,6 +4,12 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
+/**
+ * 
+ * @author wendong
+ *
+ * 2019年2月22日
+ */
 @Component
 @ConfigurationProperties(prefix = "config")
 @PropertySource("classpath:application-dev.properties")

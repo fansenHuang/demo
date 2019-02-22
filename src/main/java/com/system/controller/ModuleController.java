@@ -14,6 +14,12 @@ import com.system.entity.Module;
 import com.system.entity.User;
 import com.system.service.ModuleService;
 
+/**
+ * 权限
+ * @author wendong
+ *
+ * 2019年2月22日
+ */
 @Controller
 @RequestMapping("/module/")
 public class ModuleController {

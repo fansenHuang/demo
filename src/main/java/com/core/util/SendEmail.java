@@ -15,7 +15,10 @@ import javax.mail.internet.MimeMessage;
  *
  */
 public class SendEmail {
-	// 获取邮箱配置文件
+	
+	/**
+	 * 获取邮箱配置文件
+	 */
 	public static DBInfoUtils properties = new DBInfoUtils("sendMail.properties");
 
 	/**
@@ -36,7 +39,7 @@ public class SendEmail {
 		String myEmailPassword = properties.getValue("EmailPassword");
 		String smtpPort = properties.getValue("smtpPort");
 		// 1. 创建参数配置, 用于连接邮件服务器的参数配置
-		Properties props = new Properties(); // 参数配置
+		Properties props = new Properties(); 
 		props.setProperty("mail.transport.protocol", "smtp"); // 使用的协议（JavaMail规范要求）
 		props.setProperty("mail.smtp.host", myEmailSMTPHost); // 发件人的邮箱的 SMTP
 																// 服务器地址

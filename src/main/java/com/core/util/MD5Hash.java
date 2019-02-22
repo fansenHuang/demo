@@ -2,6 +2,12 @@ package com.core.util;
 
 import org.apache.shiro.crypto.hash.Md5Hash;
 
+/**
+ * 
+ * @author wendong
+ *
+ * 2019年2月22日
+ */
 public class MD5Hash {
 	
 	public static void main(String[] args) {

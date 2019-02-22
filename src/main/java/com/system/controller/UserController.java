@@ -15,6 +15,12 @@ import com.core.util.MD5Hash;
 import com.system.entity.User;
 import com.system.service.UserService;
 
+/**
+ * 用户
+ * @author wendong
+ *
+ * 2019年2月22日
+ */
 @Controller
 @RequestMapping("/user/")
 public class UserController {

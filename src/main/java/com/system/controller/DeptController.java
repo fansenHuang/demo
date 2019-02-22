@@ -16,6 +16,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.system.entity.Dept;
 import com.system.service.DeptService;
 
+/**
+ * 部门
+ * @author wendong
+ *
+ * 2019年2月22日
+ */
 @Controller
 @RequestMapping("/deptManage/")
 public class DeptController {
