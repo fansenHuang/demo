@@ -1,8 +1,5 @@
 package com.system.entity;
 
-import org.assertj.core.internal.Integers;
-import org.springframework.http.StreamingHttpOutputMessage;
-
 //用户详情
 public class User extends BaseEntity {
 	 
