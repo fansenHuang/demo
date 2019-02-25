@@ -52,7 +52,7 @@
 	</delete>
 
 	<insert id="addModule">
-		insert into module(name,parentId,type,remark,url,createBy,createTime) values(
+		insert into module(name,parentId,type,remark,url,create_by,create_time) values(
 			#{name},
 			#{parentModule.ID},
 			#{type},
@@ -70,7 +70,7 @@
 	</select>
 
 	<update id="saveEditModule">
-		update module set name=#{name},parentId=#{parentModule.ID},type=#{type},remark=#{remark},updateBy=#{updateBy},updateTime=#{updateTime} where ID=#{ID}
+		update module set name=#{name},parentId=#{parentModule.ID},type=#{type},remark=#{remark},update_by=#{updateBy},update_time=#{updateTime} where ID=#{ID}
 	</update>
 	
 </mapper>

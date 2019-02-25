@@ -7,13 +7,13 @@
 		SELECT * FROM user 
 		<where>
 			<if test="startTime!=null and startTime!=''">
-				createTime <![CDATA[>= ]]> #{startTime} 
+				create_time <![CDATA[>= ]]> #{startTime} 
 			</if>
 			<if test="endTime!=null and endTime!=''">
-				and createTime <![CDATA[<= ]]> #{endTime} 
+				and create_time <![CDATA[<= ]]> #{endTime} 
 			</if>
 			<if test="username!=null and username!=''">
-				and username like concat(concat('%',#{username}),'%') 
+				and user_name like concat(concat('%',#{username}),'%') 
 			</if>
 		</where>
 		
@@ -27,7 +27,7 @@
 
 	<!-- 根据用户名查询 -->
 	<select id="findUserByUserName" resultMap="usersRM">
-		SELECT * FROM user WHERE userName = #{userName}
+		SELECT * FROM user WHERE user_name = #{userName}
 	</select>
 	<!-- 根据用户ID查询用户角色表 -->
 	<select id="findRoleIdByUserId" resultType="String">
@@ -56,7 +56,7 @@
 	
 	<!-- 保存 -->
 	<insert id="addUser" parameterType="User" useGeneratedKeys="true" keyProperty="ID">
-		insert into user(userName,password,phone,email,createTime,createBy) values(
+		insert into user(user_name,password,phone,email,create_time,create_by) values(
 		#{username},
 		#{password},
 		#{phone},
@@ -79,7 +79,7 @@
 	</select>
 	
 	<update id="editUser">
-		update user set userName=#{username},phone=#{phone},email=#{email},updateTime=#{updateTime},updateBy=#{updateBy} where ID=#{ID}
+		update user set user_name=#{username},phone=#{phone},email=#{email},update_time=#{updateTime},update_by=#{updateBy} where ID=#{ID}
 	</update>
 	
 </mapper>

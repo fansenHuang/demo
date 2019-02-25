@@ -25,7 +25,7 @@
 	
 	<!-- 添加角色 -->
 	<insert id="addRole" parameterType="Role" useGeneratedKeys="true" keyProperty="ID">
-		insert into role(name,remarks,createBy,createTime) values(
+		insert into role(name,remarks,create_by,create_time) values(
 			#{name},
 			#{remarks},
 			#{createBy},
@@ -38,10 +38,10 @@
 		select * from role 
 		<where>
 			<if test="startTime!=null and startTime!=''">
-				createTime <![CDATA[>= ]]> #{startTime} 
+				create_time <![CDATA[>= ]]> #{startTime} 
 			</if>
 			<if test="endTime!=null and endTime!=''">
-				and createTime <![CDATA[<= ]]> #{endTime} 
+				and create_time <![CDATA[<= ]]> #{endTime} 
 			</if>
 			<if test="name!=null and name!=''">
 				and name like concat(concat('%',#{name}),'%')
@@ -71,7 +71,7 @@
 	</select>
 	
 	<update id="saveEditRole">
-		update role set name=#{name},remarks=#{remarks},updateBy=#{updateBy},updateTime=#{updateTime} where ID=#{ID}
+		update role set name=#{name},remarks=#{remarks},update_by=#{updateBy},update_time=#{updateTime} where ID=#{ID}
 	</update>
 	
 	<delete id="updateRoleModule">
