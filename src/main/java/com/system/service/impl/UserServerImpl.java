@@ -94,7 +94,7 @@ public class UserServerImpl implements UserService {
 	@Override
 	public int addUser(User user) {
 		User user1 = (User)SecurityUtils.getSubject().getPrincipal();
-		user.setCreateBy(user1.getUsername());
+		user.setCreateBy(user1.getUserName());
 		user.setCreateTime(new Date());
 		return usersMapper.addUser(user);
 	}
@@ -114,7 +114,7 @@ public class UserServerImpl implements UserService {
 	@Override
 	public void editUser(User user) {
 		User loginUser = (User)SecurityUtils.getSubject().getPrincipal();
-		user.setUpdateBy(loginUser.getUsername());
+		user.setUpdateBy(loginUser.getUserName());
 		user.setUpdateTime(new Date());
 		usersMapper.editUser(user);
 	}

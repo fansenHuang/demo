@@ -17,7 +17,7 @@ public interface UsersMapper {
 	 * @param userName
 	 * @return
 	 */
-	public User findUserByUserName(String userName);
+	public User findUserByUserName(@Param("userName")String userName);
 
 	/**
 	 * 根据用户ID查询用户角色表
@@ -42,7 +42,7 @@ public interface UsersMapper {
 	 */
 	public void saveUserRole(@Param("userId") Integer userId, @Param("roleId") Integer roleId);
 
-	List<User> selectUserList(@Param("startTime")String start, @Param("endTime")String end, @Param("username")String username);
+	List<User> selectUserList(@Param("startTime")String start, @Param("endTime")String end, @Param("userName")String userName);
 
 	//查询状态 是否启用
 	String selectStatusById(@Param("id")Integer id);

@@ -49,11 +49,11 @@ public class MainController {
 	private UserService userService;
 
 	@RequestMapping("/userlist")
-	public String userlist(Map<String, Object> map, String start, String end, String username,
+	public String userlist(Map<String, Object> map, String start, String end, String userName,
 			@RequestParam(value = "page", required = false, defaultValue = "1") Integer page) {
 
 		PageHelper.startPage(page, 6);
-		List<User> userList = userService.userList(start, end, username);
+		List<User> userList = userService.userList(start, end, userName);
 
 		PageInfo<User> pageInfo = new PageInfo<User>(userList);
 
@@ -62,7 +62,7 @@ public class MainController {
 
 		map.put("start", start);
 		map.put("end", end);
-		map.put("username", username);
+		map.put("userName", userName);
 
 		return "system/user/userList";
 	}

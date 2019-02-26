@@ -35,7 +35,7 @@ public class ModuleServiceImpl implements ModuleService {
 	public void addModule(Module module) {
 		
 		User user = (User)SecurityUtils.getSubject().getPrincipal();
-		module.setCreateBy(user.getUsername());
+		module.setCreateBy(user.getUserName());
 		module.setCreateTime(new Date());
 		
 		moduleMapper.addModule(module);
@@ -51,7 +51,7 @@ public class ModuleServiceImpl implements ModuleService {
 	public void saveEditModule(Module module) {
 		
 		User user = (User)SecurityUtils.getSubject().getPrincipal();
-		module.setUpdateBy(user.getUsername());
+		module.setUpdateBy(user.getUserName());
 		module.setUpdateTime(new Date());
 		moduleMapper.saveEditModule(module);
 	}

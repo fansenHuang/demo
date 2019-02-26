@@ -30,7 +30,7 @@ public class RoleServiceImpl implements RoleService {
 	@Override
 	public int addRole(Role role) {
 		User loginUser = (User)SecurityUtils.getSubject().getPrincipal();
-		role.setCreateBy(loginUser.getUsername());
+		role.setCreateBy(loginUser.getUserName());
 		role.setCreateTime(new Date());
 		return roleMapper.addRole(role);
 	}
@@ -78,7 +78,7 @@ public class RoleServiceImpl implements RoleService {
 	@Override
 	public void saveEditRole(Role role) {
 		User loginUser = (User)SecurityUtils.getSubject().getPrincipal();
-		role.setUpdateBy(loginUser.getUsername());
+		role.setUpdateBy(loginUser.getUserName());
 		role.setUpdateTime(new Date());
 		roleMapper.saveEditRole(role);
 	}

@@ -12,8 +12,8 @@
 			<if test="endTime!=null and endTime!=''">
 				and create_time <![CDATA[<= ]]> #{endTime} 
 			</if>
-			<if test="username!=null and username!=''">
-				and user_name like concat(concat('%',#{username}),'%') 
+			<if test="userName!=null and userName!=''">
+				and user_name like concat(concat('%',#{userName}),'%') 
 			</if>
 		</where>
 		
@@ -57,7 +57,7 @@
 	<!-- 保存 -->
 	<insert id="addUser" parameterType="User" useGeneratedKeys="true" keyProperty="ID">
 		insert into user(user_name,password,phone,email,create_time,create_by) values(
-		#{username},
+		#{userName},
 		#{password},
 		#{phone},
 		#{email},
@@ -79,7 +79,7 @@
 	</select>
 	
 	<update id="editUser">
-		update user set user_name=#{username},phone=#{phone},email=#{email},update_time=#{updateTime},update_by=#{updateBy} where ID=#{ID}
+		update user set user_name=#{userName},phone=#{phone},email=#{email},update_time=#{updateTime},update_by=#{updateBy} where ID=#{ID}
 	</update>
 	
 </mapper>

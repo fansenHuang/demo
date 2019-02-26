@@ -33,10 +33,6 @@ public class ShiroConfiguration {
 		LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
 		filterChainDefinitionMap.put("/login*", "anon"); // 表示可以匿名访问
 		filterChainDefinitionMap.put("/loginUser", "anon");
-		filterChainDefinitionMap.put("/publicityManage/**", "anon");// 宣传管理
-		filterChainDefinitionMap.put("/logManage/**", "anon");
-		filterChainDefinitionMap.put("/noticeManage/**", "anon");
-		filterChainDefinitionMap.put("/workPlanManage/**", "anon");
 		filterChainDefinitionMap.put("/logout*", "anon");
 		filterChainDefinitionMap.put("/templates/**", "anon");
 //		filterChainDefinitionMap.put("/*", "authc");// 表示需要认证才可以访问
