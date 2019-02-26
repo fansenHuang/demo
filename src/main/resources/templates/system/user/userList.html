@@ -71,7 +71,7 @@
 			<form class="layui-form layui-col-md12 x-so" id="userID">
 				<input class="layui-input" placeholder="开始日" name="start" id="start" th:value="${start}"> 
 				<input class="layui-input" placeholder="截止日" name="end" id="end" th:value="${end}"> 
-				<input type="text" name="username" placeholder="请输入用户名" autocomplete="off" class="layui-input" id="username" th:value="${username}">
+				<input type="text" name="userName" placeholder="请输入用户名" autocomplete="off" class="layui-input" id="username" th:value="${userName}">
 							<button class="layui-btn" lay-submit="" lay-filter="sreach">
 								<i class="layui-icon">&#xe615;</i>
 							</button>
@@ -114,7 +114,7 @@
 						</div>
 					</td>
 					<td th:text="${user.ID}"></td>
-					<td th:text="${user.username}"></td>
+					<td th:text="${user.userName}"></td>
 					<td th:text="${user.phone}"></td>
 					<td th:text="${user.email}"></td>
 					<td th:text="${#dates.format(user.createTime, 'yyyy-MM-dd')}"></td>
@@ -151,16 +151,16 @@
 
 				<a th:if="${pageInfo.isFirstPage==true}">首页</a> <a
 					th:if="${pageInfo.isFirstPage==false}"
-					th:href="@{userlist(page=${pageInfo.firstPage },start=${start},end=${end},username=${username})}">首页</a>
+					th:href="@{userlist(page=${pageInfo.firstPage },start=${start},end=${end},userName=${userName})}">首页</a>
 				<a th:if="${pageInfo.hasPreviousPage==true}"
-					th:href="@{userlist(page=${pageInfo.prePage },start=${start},end=${end},username=${username})}">上一页</a>
+					th:href="@{userlist(page=${pageInfo.prePage },start=${start},end=${end},userName=${userName})}">上一页</a>
 				<a th:if="${pageInfo.hasPreviousPage==false}">上一页</a> <a
 					th:if="${pageInfo.hasNextPage==true}"
-					th:href="@{userlist(page=${pageInfo.nextPage },start=${start},end=${end},username=${username})}">下一页</a>
+					th:href="@{userlist(page=${pageInfo.nextPage },start=${start},end=${end},userName=${userName})}">下一页</a>
 				<a th:if="${pageInfo.hasNextPage==false}">下一页</a> <a
 					th:if="${pageInfo.isLastPage==true}">末页</a> <a
 					th:if="${pageInfo.isLastPage==false}"
-					th:href="@{userlist(page=${pageInfo.lastPage},start=${start},end=${end},username=${username})}">末页</a>
+					th:href="@{userlist(page=${pageInfo.lastPage},start=${start},end=${end},userName=${userName})}">末页</a>
 
 			</div>
 		</div>

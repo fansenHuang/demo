@@ -55,7 +55,7 @@ public class UserController {
 	public String andUser(User user,@RequestParam(value="roleId",required=false)Integer[] roleIds) {
 		
 		
-		user.setPassword(MD5Hash.getMd5HashPasswod(user.getPassword(), user.getUsername()));
+		user.setPassword(MD5Hash.getMd5HashPasswod(user.getPassword(), user.getUserName()));
 		userService.addUser(user);
 		if (roleIds!=null&&roleIds.length>0) {
 			userService.saveUserRole(roleIds,user.getID());

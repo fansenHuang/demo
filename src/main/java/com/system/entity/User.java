@@ -8,7 +8,7 @@ public class User extends BaseEntity {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private String username;//用户名
+	private String userName;//用户名
  
     private String password;//密码
     
@@ -42,12 +42,14 @@ public class User extends BaseEntity {
 		this.status = status;
 	}
 
-	public String getUsername() {
-		return username;
+	
+	
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getPassword() {
@@ -60,10 +62,8 @@ public class User extends BaseEntity {
 
 	@Override
 	public String toString() {
-		return "User [username=" + username + ", password=" + password + ", phone=" + phone + ", email=" + email
+		return "User [userName=" + userName + ", password=" + password + ", phone=" + phone + ", email=" + email
 				+ ", status=" + status + "]";
 	}
- 
-
 
 }

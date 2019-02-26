@@ -29,10 +29,10 @@ public class LoginController {
     }
 
     @RequestMapping("/loginUser")
-    public String loginUser(Map<String, Object> map,String username,String password,HttpSession session,Model model) {
+    public String loginUser(Map<String, Object> map,String userName,String password,HttpSession session,Model model) {
         //授权认证
-    	System.out.println("LoginController.loginUser()"+username+password);
-        UsernamePasswordToken usernamePasswordToken=new UsernamePasswordToken(username,password);
+    	System.out.println("LoginController.loginUser()"+userName+password);
+        UsernamePasswordToken usernamePasswordToken=new UsernamePasswordToken(userName,password);
         Subject subject = SecurityUtils.getSubject();
         try {
             //完成登录

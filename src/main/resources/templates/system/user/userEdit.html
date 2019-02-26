@@ -24,8 +24,8 @@
                   <span class="x-red">*</span>登录名
               </label>
               <div class="layui-input-inline">
-                  <input type="text" id="username" name="username" required="" lay-verify="required"
-                  autocomplete="off" th:value="${user.username}" class="layui-input">
+                  <input type="text" id="username" name="userName" required="" lay-verify="required"
+                  autocomplete="off" th:value="${user.userName}" class="layui-input">
               </div>
               <div class="layui-form-mid layui-word-aux">
                   <span class="x-red">*</span>将会成为您唯一的登入名
@@ -99,12 +99,12 @@
                 type: data.form.method,
                 data: $(data.form).serialize(),
          		  success:function(){
-         			 //parent.location.href="/userlist";
          			 layer.alert("保存成功", {icon: 6},function () {
                          // 获得frame索引
                          var index = parent.layer.getFrameIndex(window.name);
                          //关闭当前frame
                          parent.layer.close(index);
+                         parent.location.href="/userlist";
                      });
          		  }
          	  });
