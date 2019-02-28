@@ -9,21 +9,21 @@
 <meta name="viewport"
 	content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-<link rel="stylesheet" href="./css/font.css">
-<link rel="stylesheet" href="./css/xadmin.css">
+<link rel="stylesheet" th:href="@{/css/font.css}">
+<link rel="stylesheet" th:href="@{/css/xadmin.css}">
 <script type="text/javascript"
 	src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="./lib/layui/layui.js"
+<script type="text/javascript" th:src="@{/lib/layui/layui.js}"
 	charset="utf-8"></script>
-<script type="text/javascript" src="./js/xadmin.js"></script>
+<script type="text/javascript" th:src="@{/js/xadmin.js}"></script>
 </head>
 
 <body>
 	<div class="x-body">
-		<form class="layui-form" action="module/addModule" id="addModuleId" method="post">
+		<form class="layui-form" action="/deptManage/saveDept" id="addModuleId" method="post">
 			<div class="layui-form-item">
 				<label for="username" class="layui-form-label"> <span
-					class="x-red">*</span>模块名
+					class="x-red">*</span>部门名称
 				</label>
 				<div class="layui-input-inline">
 					<input type="text" id="name" name="name" required=""
@@ -33,46 +33,13 @@
 			</div>
 			<div class="layui-form-item">
 				<label for="parentModule" class="layui-form-label"> <span
-					class="x-red">*</span>父模块
+					class="x-red">*</span>父部门
 				</label>
 				<div class="layui-input-inline">
-					 <select name="parentModule.ID">
+					 <select name="pDept.ID">
 					 	 <option></option>
-			             <option th:each="module:${modulelist}" th:value="${module.ID}"><span th:text="${module.name}"></span></option>
+			             <option th:each="dept:${deptlist}" th:value="${dept.ID}"><span th:text="${dept.name}"></span></option>
 			          </select>
-				</div>
-			</div>
-			<div class="layui-form-item">
-				<label for="username" class="layui-form-label"> <span
-					class="x-red">*</span>模块类型
-				</label>
-				<div class="layui-input-inline">
-					<input type="text" list="type123" name="type" required=""
-						lay-verify="required" autocomplete="off" class="layui-input"
-						value="" >
-						<datalist id="type123">
-							<option th:each="type:${typeSet}"><span th:text="${type}"></option>
-						</datalist>
-				</div>
-			</div>
-			<div class="layui-form-item">
-				<label for="username" class="layui-form-label"> <span
-					class="x-red">*</span>路径
-				</label>
-				<div class="layui-input-inline">
-					<input type="text" id="url" name="url" required=""
-						lay-verify="required" autocomplete="off" class="layui-input"
-						value="">
-				</div>
-			</div>
-			<div class="layui-form-item">
-				<label for="username" class="layui-form-label"> <span
-					class="x-red">*</span>描述
-				</label>
-				<div class="layui-input-inline">
-					<input type="text" id="remark" name="remark" required=""
-						lay-verify="required" autocomplete="off" class="layui-input"
-						value="">
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -115,7 +82,7 @@
                          var index = parent.layer.getFrameIndex(window.name);
                          //关闭当前frame
                          parent.layer.close(index);
-                         parent.location.href="modulelist";
+                         parent.location.href="/deptManage/deptlist";
                      });
          		  }
          	  });

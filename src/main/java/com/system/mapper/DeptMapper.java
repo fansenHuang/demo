@@ -12,7 +12,11 @@ public interface DeptMapper {
 	
 	List<Dept> deptTree();
 
-	int andDept(Dept dept);
+	int saveDept(Dept dept);
 
 	List<Dept> deptList(@Param("start")String start, @Param("end")String end, @Param("deptName")String deptName);
+
+	void delAll(@Param("ids")String[] ids);
+
+	Dept selectDeptById(@Param("id")Integer id);
 }

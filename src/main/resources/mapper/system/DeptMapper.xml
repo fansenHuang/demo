@@ -4,31 +4,55 @@
 	
 	<resultMap type="Dept" id="DRM" autoMapping="true">
 		<id column="ID" property="ID"/>
+		<association property="pDept" javaType="Dept">
+			<id column="p_ID" property="ID"/>
+			<result column="p_name" property="name" />
+		</association>
 	</resultMap>
+	
 	<select id="deptTree" resultMap="DRM">
 		select * from dept
 	</select>
 	
-	<insert id="andDept" parameterType="Dept" useGeneratedKeys="true" keyProperty="id">
-		insert into dept(name,pId) values(
+	<insert id="saveDept" parameterType="Dept" useGeneratedKeys="true" keyProperty="id">
+		insert into dept(name,pId,create_by,create_time) values(
 			#{name},
-			#{pId}
+			#{pId},
+			#{createBy},
+			#{createTime}
 		)
 	</insert>
 	
 	<select id="deptList" resultMap="DRM">
 		select * from dept 
+		left join (SELECT ID p_id,name p_name FROM dept)p_d ON 
+		dept.pId=p_d.p_id
 		<where>
 			<if test="start!=null and start!=''">
-				create_time <![CDATA[>= ]]> #{start} 
+				DATE_FORMAT(create_time,'%Y-%m-%d') <![CDATA[>= ]]> #{start} 
 			</if>
 			<if test="end!=null and end!=''">
-				and create_time <![CDATA[<= ]]> #{end} 
+				and DATE_FORMAT(create_time,'%Y-%m-%d') <![CDATA[<= ]]> #{end} 
 			</if>
 			<if test="deptName!=null and deptName!=''">
 				and name like concat(concat('%',#{deptName}),'%') 
 			</if>
 		</where>
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="delAll">
+		delete from dept  where ID in(
+		<foreach collection="ids" item="id" separator=",">
+			#{id}
+		</foreach>)
+	</delete>
+	
+	<select id="selectDeptById" resultMap="DRM">
+		select * from dept 
+		left join (SELECT ID p_id,name p_name FROM dept)p_d ON 
+		dept.pId=p_d.p_id 
+		where ID=#{id}
 	</select>
 	
 </mapper>

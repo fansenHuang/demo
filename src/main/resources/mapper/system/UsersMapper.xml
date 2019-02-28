@@ -7,10 +7,10 @@
 		SELECT * FROM user 
 		<where>
 			<if test="startTime!=null and startTime!=''">
-				create_time <![CDATA[>= ]]> #{startTime} 
+				DATE_FORMAT(create_time,'%Y-%m-%d') <![CDATA[>= ]]> #{startTime} 
 			</if>
 			<if test="endTime!=null and endTime!=''">
-				and create_time <![CDATA[<= ]]> #{endTime} 
+				and DATE_FORMAT(create_time,'%Y-%m-%d') <![CDATA[<= ]]> #{endTime} 
 			</if>
 			<if test="userName!=null and userName!=''">
 				and user_name like concat(concat('%',#{userName}),'%') 

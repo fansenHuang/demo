@@ -8,8 +8,12 @@ public interface DeptService {
 	
 	List<Dept> deptTree();
 
-	int andDept(Dept dept);
+	int saveDept(Dept dept);
 
 	List<Dept> deptList(String start, String end, String deptName);
+
+	void delAll(String[] ids);
+
+	Dept selectDeptById(Integer id);
 	
 }

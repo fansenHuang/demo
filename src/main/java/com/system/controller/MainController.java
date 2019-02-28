@@ -149,7 +149,7 @@ public class MainController {
 		return "system/role/editRole";
 	}
 
-	@Resource
+	@Resource  
 	private ModuleService moduleService;
 
 	@RequestMapping("/modulelist")

@@ -1,7 +1,5 @@
 package com.system.entity;
 
-import static org.hamcrest.CoreMatchers.nullValue;
-
 public class Dept extends BaseEntity{
 
 	/**

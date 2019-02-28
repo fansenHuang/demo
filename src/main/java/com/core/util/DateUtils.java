@@ -310,7 +310,8 @@ public class DateUtils {
 		/*
 		 * try { Date date1 = sdf.parse(sdf.format(calendar.getTime())); return
 		 * date1; } catch (ParseException e) { e.printStackTrace(); }
-		 */ return calendar.getTime();
+		 */ 
+		return calendar.getTime();
 	}
 
 	public static void main(String[] args) {
