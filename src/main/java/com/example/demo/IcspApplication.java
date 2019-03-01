@@ -3,6 +3,7 @@
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 
 /**
@@ -10,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  * 2019年2月22日
  */
-@SpringBootApplication(scanBasePackages = {"com.*.controller","com.system.shiro","com.*.service.impl","com.*.entity","com.system.config"})
+@SpringBootApplication(scanBasePackages = {"com.*.controller","com.system.shiro","com.*.service.impl","com.*.entity","com.system.config","com.activemq.listeners"})
 @MapperScan("com.*.mapper")
 public class IcspApplication {
 
