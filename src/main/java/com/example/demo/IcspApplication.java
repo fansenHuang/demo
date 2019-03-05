@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  * 2019年2月22日
  */
-@SpringBootApplication(scanBasePackages = {"com.*.controller","com.system.shiro","com.*.service.impl","com.*.entity","com.system.config","com.activemq.listeners"})
+@SpringBootApplication(scanBasePackages = {"com.*.controller","com.system.shiro","com.*.service.impl","com.*.entity","com.*.config","com.activemq.listeners","com.*.server"})
 @MapperScan("com.*.mapper")
 public class IcspApplication {
 
