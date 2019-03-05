@@ -3,7 +3,7 @@
 <mapper namespace="com.system.mapper.DeptMapper">
 	
 	<resultMap type="Dept" id="DRM" autoMapping="true">
-		<id column="id" property="id"/>
+		<id column="ID" property="ID"/>
 	</resultMap>
 	<select id="deptTree" resultMap="DRM">
 		select * from dept
@@ -15,5 +15,20 @@
 			#{pId}
 		)
 	</insert>
+	
+	<select id="deptList" resultMap="DRM">
+		select * from dept 
+		<where>
+			<if test="start!=null and start!=''">
+				create_time <![CDATA[>= ]]> #{start} 
+			</if>
+			<if test="end!=null and end!=''">
+				and create_time <![CDATA[<= ]]> #{end} 
+			</if>
+			<if test="deptName!=null and deptName!=''">
+				and name like concat(concat('%',#{deptName}),'%') 
+			</if>
+		</where>
+	</select>
 	
 </mapper>

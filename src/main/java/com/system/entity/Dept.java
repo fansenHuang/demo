@@ -1,34 +1,42 @@
 package com.system.entity;
 
+import static org.hamcrest.CoreMatchers.nullValue;
 
-public class Dept {
+public class Dept extends BaseEntity{
 
-	private Integer id;//部门id
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String name;//部门名称
-	private Integer pId;//上级部门id
+	private Dept pDept;//上级部门
 	
-	public Integer getId() {
-		return id;
+	//ztree展示
+	public Integer  getpId(){
+		if (pDept != null) {
+			return pDept.getID();
+		}
+		return null;
 	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
+	
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Integer getpId() {
-		return pId;
+
+	public Dept getpDept() {
+		return pDept;
 	}
-	public void setpId(Integer pId) {
-		this.pId = pId;
+	public void setpDept(Dept pDept) {
+		this.pDept = pDept;
 	}
 	@Override
 	public String toString() {
-		return "Dept [id=" + id + ", name=" + name + ", pId=" + pId + "]";
+		return "Dept [name=" + name + ", pDept=" + pDept + "]";
 	}
+	
 	
 	
 }

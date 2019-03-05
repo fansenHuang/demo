@@ -9,11 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.system.entity.Dept;
+import com.system.entity.User;
 import com.system.service.DeptService;
 
 /**
@@ -28,6 +32,25 @@ public class DeptController {
 
 	@Autowired
 	private DeptService deptService;
+	
+	//部门列表
+	@RequestMapping("/deptlist")
+	public String deptlist(Map<String, Object> map, String start, String end, String deptName,
+			@RequestParam(value = "page", required = false, defaultValue = "1") Integer page) {
+
+		PageHelper.startPage(page, 6);
+		List<Dept> deptList = deptService.deptList(start, end, deptName);
+
+		PageInfo<Dept> pageInfo = new PageInfo<Dept>(deptList);
+
+		map.put("pageInfo", pageInfo);
+
+		map.put("start", start);
+		map.put("end", end);
+		map.put("deptName", deptName);
+
+		return "system/dept/deptList";
+	}
 	
 	//展示deptZtree
 	@ResponseBody
@@ -47,7 +70,6 @@ public class DeptController {
 	public String andNode(String node,Integer parentId) throws JsonProcessingException{
 		Dept dept = new Dept();
 		dept.setName(node);
-		dept.setpId(parentId);
 		deptService.andDept(dept);
 		List<Dept> list =  new ArrayList<>();
 		list.add(dept);

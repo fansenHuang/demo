@@ -27,4 +27,10 @@ public class DeptServiceImpl implements DeptService {
 		return deptMapper.andDept(dept);
 	}
 
+	@Override
+	public List<Dept> deptList(String start, String end, String deptName) {
+		
+		return deptMapper.deptList(start,end,deptName);
+	}
+
 }
