@@ -94,11 +94,8 @@ public class MainController {
 
 	@RequestMapping("/addUser")
 	public String addUser(Map<String, Object> map) {
-
-		String start = null;
-		String end = null;
-		String name = null;
-		List<Role> roleList = roleService.roleList(start, end, name);
+		
+		List<Role> roleList = roleService.roleList(null, null, null);
 
 		map.put("rolelist", roleList);
 
@@ -158,8 +155,18 @@ public class MainController {
 
 		PageHelper.startPage(page, 6);
 		List<Module> modulelist = moduleService.modulelist(name, type);
-		PageInfo<Module> pageInfo = new PageInfo<>(modulelist);
+		Set<String> typeSet = new TreeSet<>();
 
+		List<Module> modulelist2 = moduleService.modulelist(null, null);//偷个懒，不单独写查询类型的sql了
+		
+		for (Module module3 : modulelist2) {
+			typeSet.add(module3.getType());
+		}
+		
+		PageInfo<Module> pageInfo = new PageInfo<>(modulelist);
+		
+		map.put("typeSet", typeSet);
+		
 		map.put("pageInfo", pageInfo);
 
 		map.put("name", name);
@@ -182,10 +189,7 @@ public class MainController {
 	@RequestMapping("/addModule")
 	public String addModule(Map<String, Object> map) {
 
-		String name = null;
-		String type = null;
-
-		List<Module> modulelist = moduleService.modulelist(name, type);
+		List<Module> modulelist = moduleService.modulelist(null, null);
 
 		Set<String> typeSet = new TreeSet<>();
 
@@ -203,10 +207,8 @@ public class MainController {
 	public String editModule(Map<String, Object> map, Integer id) {
 
 		Module module = moduleService.selectModuleById(id);
-
-		String name = null;
-		String type = null;
-		List<Module> modulelist = moduleService.modulelist(name, type);
+		
+		List<Module> modulelist = moduleService.modulelist(null, null);
 		Set<String> typeSet = new TreeSet<>();
 
 		for (Module module3 : modulelist) {

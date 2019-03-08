@@ -30,13 +30,10 @@
       <div class="layui-row">
         <form class="layui-form layui-col-md12 x-so layui-form-pane">
           <div class="layui-input-inline">
-            <select name="type">
-               <option value=""></option>
-			   <option value="主菜单">主菜单</option>
-			   <option value="左侧菜单">左侧菜单</option>
-			   <option value="按钮">按钮</option>
-			   <option value="菜单">菜单</option>
-            </select>
+             <select name="type">
+		 	   <option></option>
+		       <option th:each="type:${typeSet}" th:value="${type}"><span th:text="${type}"></span></option>
+			  </select>
           </div>
           <input class="layui-input" placeholder="模块名" name="name" th:value="${name}">
           <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
