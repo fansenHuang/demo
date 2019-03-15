@@ -32,40 +32,64 @@
           <div class="layui-input-inline">
             <select name="type">
                <option value="">全部类型</option>
-			   <option value="部门">部门</option>
-			   <option value="左侧菜单">左侧菜单</option>
-			   <option value="按钮">按钮</option>
-			   <option value="菜单">菜单</option>
+			   <option value="部门">部门通知</option>
+			   <option value="左侧菜单">会议通知</option>
+			   <option value="按钮">放假通知</option>
+			   <option value="菜单">升级日志</option>
+			   <option value="菜单">技术支持</option>
             </select>
           </div>
-          <input class="layui-input" placeholder="发送人" name="name" th:value="${name}">
-          <input class="layui-input" placeholder="开始日" name="start" id="start" th:value="${start}"> 
-		  <input class="layui-input" placeholder="截止日" name="end" id="end" th:value="${end}">
+          <input class="layui-input" placeholder="标题" name="name" th:value="${title}">
+          <input class="layui-input" placeholder="开始时间" name="start" id="start" th:value="${start}"> 
+		  <input class="layui-input" placeholder="截止时间" name="end" id="end" th:value="${end}">
+		  <div class="layui-input-inline">
+            <select name="type">
+               <option value="">状态</option>
+			   <option value="部门">已发布</option>
+			   <option value="左侧菜单">草稿箱</option>
+            </select>
+          </div>
           <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
         </form>
       </div>
-      <blockquote class="layui-elem-quote"> </blockquote>
-      <pre class="layui-code" lay-title="JavaScript" lay-skin="notepad">
-          //xcity城市插件 基于于jquery与layui form 模块，使用之前先确认这两者是否引入 
-          //插件文件为 xcity.js,引入 
-          select lay-filter 属性值 为必须 "province/city/area"
-          //初始化
-          $('#x-city').xcity();
-          //传默认值 
-          $('#x-city').xcity('广东','广州市','东山区');
-      </pre>
+      <!-- <blockquote class="layui-elem-quote">请问企鹅王蔷薇蔷薇蔷薇蔷薇 </blockquote> -->
+      <xblock>
+		<button class="layui-btn layui-btn-danger" onclick="delAll()">
+			<i class="layui-icon"></i>批量删除
+		</button>
+		<button class="layui-btn" onclick="x_admin_show('添加用户','/notice/addNotice')">
+			<i class="layui-icon"></i>新增
+		</button>
+		<span class="x-right" style="line-height: 40px">共有数据：
+			<td></td> 条
+		</span> </xblock>
+      <!-- <pre class="layui-code" lay-title="JavaScript" lay-skin="notepad">
+      </pre> -->
+      <table class="layui-table">
+			<thead>
+				<tr>
+					<th>
+						<div class="layui-unselect header layui-form-checkbox"
+							lay-skin="primary">
+							<i class="layui-icon">&#xe605;</i>
+						</div>
+					</th>
+					<th>消息类型</th>
+					<th>标题</th>
+					<th>内容</th>
+					<th>开始时间</th>
+					<th>结束时间</th>
+					<th>状态</th>
+					<th>操作</th>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>
     </div>
-    <script type="text/javascript" src="./js/xcity.js"></script>
+    
     <script>
-      layui.use(['form','code'], function(){
-        form = layui.form;
-
-        layui.code();
-
-        $('#x-city').xcity('广东','广州市','东山区');
-
-      });
-      
+  
       var socket; 
       if(typeof(WebSocket) == "undefined") { 
     	  console.log("您的浏览器不支持WebSocket"); 
