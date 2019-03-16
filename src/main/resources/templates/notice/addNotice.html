@@ -1,93 +1,64 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 
 <head>
 <meta charset="UTF-8">
 <title>欢迎页面-X-admin2.0</title>
 <meta name="renderer" content="webkit">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport"
-	content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
 <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-<link rel="stylesheet" href="./css/font.css">
-<link rel="stylesheet" href="./css/xadmin.css">
-<script type="text/javascript"
-	src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="./lib/layui/layui.js"
-	charset="utf-8"></script>
-<script type="text/javascript" src="./js/xadmin.js"></script>
+<link rel="stylesheet" th:href="@{/css/font.css}">
+<link rel="stylesheet" th:href="@{/css/xadmin.css}">
+<script type="text/javascript" th:src="@{/js/jquery-1.9.1.min.js}"></script>
+<script type="text/javascript" th:src="@{/lib/layui/layui.js}" charset="utf-8"></script>
+<script type="text/javascript" th:src="@{/js/xadmin.js}"></script>
 </head>
 
 <body>
 	<div class="x-body">
-		<form class="layui-form" action="user/addUser" id="addUserId" method="post">
+		<form class="layui-form" action="/notice/saveNotice" 
+			method="post">
 			<div class="layui-form-item">
-				<label for="username" class="layui-form-label"> <span
-					class="x-red">*</span>登录名
+			<label for="phone" class="layui-form-label"> <span
+					class="x-red">*</span>消息类型
 				</label>
 				<div class="layui-input-inline">
-					<input type="text" id="username" name="userName" required=""
-						lay-verify="required" autocomplete="off" class="layui-input"
-						value="">
+					<select name="type" lay-verify="required">
+		               <option value=""></option>
+					   <option value="部门通知">部门通知</option>
+					   <option value="会议通知">会议通知</option>
+					   <option value="放假通知">放假通知</option>
+					   <option value="升级日志">升级日志</option>
+					   <option value="技术支持">技术支持</option>
+            		</select>
 				</div>
-				<div class="layui-form-mid layui-word-aux">
-					<span class="x-red">*</span>将会成为您唯一的登入名
-				</div>
+				
 			</div>
 			<div class="layui-form-item">
 				<label for="phone" class="layui-form-label"> <span
-					class="x-red">*</span>手机
+					class="x-red">*</span>标题
 				</label>
 				<div class="layui-input-inline">
-					<input type="text" id="phone" name="phone" required=""
-						lay-verify="phone" autocomplete="off" class="layui-input"
-						value="">
+					<input type="text" id="phone" name="title" required=""
+						lay-verify="required" autocomplete="off" class="layui-input" value="">
 				</div>
-				<!-- <div class="layui-form-mid layui-word-aux">
-                  <span class="x-red">*</span>
-              </div> -->
 			</div>
 			<div class="layui-form-item">
 				<label for="L_email" class="layui-form-label"> <span
-					class="x-red">*</span>邮箱
+					class="x-red">*</span>内容
 				</label>
 				<div class="layui-input-inline">
-					<input type="text" id="L_email" name="email" required=""
-						lay-verify="email" autocomplete="off" class="layui-input"
-						value="">
+					<textarea type="text" id="L_email" name="content" required=""
+						lay-verify="required" autocomplete="off" class="layui-textarea"  value=""></textarea>
 				</div>
 			</div>
-			<div class="layui-form-item">
-				<label class="layui-form-label"><span class="x-red">*</span>角色</label>
-				<div class="layui-input-block">
-					<input type="checkbox" name="roleId" lay-skin="primary" th:each="role:${rolelist}" th:title="${role.name}" th:value="${role.ID}">
-				</div>
-			</div>
-			<div class="layui-form-item">
-				<label for="L_pass" class="layui-form-label"> <span
-					class="x-red">*</span>密码
-				</label>
-				<div class="layui-input-inline">
-					<input type="password" id="L_pass" name="password" required=""
-						lay-verify="pass" autocomplete="off" class="layui-input"
-						value="">
-				</div>
-				<div class="layui-form-mid layui-word-aux">6到16个字符</div>
-			</div>
-			<div class="layui-form-item">
-				<label for="L_repass" class="layui-form-label"> <span
-					class="x-red">*</span>确认密码
-				</label>
-				<div class="layui-input-inline">
-					<input type="password" id="L_repass" name="repass" required=""
-						lay-verify="repass" autocomplete="off" class="layui-input"
-						value="">
-				</div>
-			</div>
-			<div class="layui-form-item">
-				<label for="L_repass" class="layui-form-label"> </label>
-				<button class="layui-btn" lay-filter="add" lay-submit="">
-					增加</button>
+			<div class="layui-row">
+					<button class="layui-btn" lay-filter="add" lay-submit="">发送</button>
+				
+					<label for="L_repass" class="layui-form-label"> </label>
+					<button class="layui-btn" lay-filter="drafts" lay-submit="">草稿箱</button>
+				
 			</div>
 		</form>
 	</div>
@@ -119,20 +90,19 @@
                 type: data.form.method,
                 data: $(data.form).serialize(),
          		  success:function(){
-         			 layer.alert("增加成功", {icon: 6},function () {
+         			 layer.alert("发送成功", {icon: 6},function () {
                          // 获得frame索引
                          var index = parent.layer.getFrameIndex(window.name);
                          //关闭当前frame
                          parent.layer.close(index);
-                         parent.location.href='/userlist';
+                         parent.location.href='/notice';
                      });
          		  }
          	  });
             return false;
           });
-          
-          
         });
+        
     </script>
 </body>
 

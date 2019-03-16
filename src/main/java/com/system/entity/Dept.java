@@ -1,5 +1,7 @@
 package com.system.entity;
 
+import com.core.entity.BaseEntity;
+
 public class Dept extends BaseEntity{
 
 	/**

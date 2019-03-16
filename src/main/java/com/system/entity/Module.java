@@ -1,5 +1,7 @@
 package com.system.entity;
 
+import com.core.entity.BaseEntity;
+
 public class Module extends BaseEntity {
 
 	private String name;// 模块名称

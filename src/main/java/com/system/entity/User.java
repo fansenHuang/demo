@@ -1,5 +1,7 @@
 package com.system.entity;
 
+import com.core.entity.BaseEntity;
+
 //用户详情
 public class User extends BaseEntity {
 	 

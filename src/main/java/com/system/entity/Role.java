@@ -1,5 +1,7 @@
 package com.system.entity;
 
+import com.core.entity.BaseEntity;
+
 /**
  * 角色-实体类
  * @author wendong
