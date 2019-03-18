@@ -4,7 +4,7 @@ import com.core.entity.BaseEntity;
 
 public class Notice extends BaseEntity{
 
-	//部门类型
+	//类型
 	private String type;
 	
 	//标题
@@ -52,6 +52,5 @@ public class Notice extends BaseEntity{
 	public String toString() {
 		return "Notice [type=" + type + ", title=" + title + ", content=" + content + ", status=" + status + "]";
 	}
-
 	
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.websocket.entity.Notice;
 import com.websocket.server.WebSocketServer;
 import com.websocket.service.NoticeService;
@@ -33,7 +34,8 @@ public class NoticeController {
 	 */
 	@RequestMapping("")
 	public String notice() {
-
+		
+		
 		return "notice/noticeList";
 	}
 
@@ -61,7 +63,8 @@ public class NoticeController {
 
 		System.out.println("NoticeController.saveNotice()" + notice);
 
-		WebSocketServer.sendInfo(notice.getContent(), null);
+		Gson gson =  new Gson();
+		WebSocketServer.sendInfo(gson.toJson(notice), null);
 
 	}
 
