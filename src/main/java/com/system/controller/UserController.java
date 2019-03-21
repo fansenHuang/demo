@@ -81,7 +81,7 @@ public class UserController {
 	public String editUser(User user,@RequestParam(value="roleId",required=false)Integer[] roleIds) {
 		
 		userService.editUser(user);
-		if (roleIds.length>0) {
+		if (roleIds!=null&&roleIds.length>0) {
 
 			userService.saveUserRole(roleIds, user.getID());
 		}

@@ -38,7 +38,7 @@
 				<div class="layui-input-inline">
 					<input type="text" id="phone" name="phone" required=""
 						lay-verify="phone" autocomplete="off" class="layui-input"
-						value="">
+						value="15736938931">
 				</div>
 				<!-- <div class="layui-form-mid layui-word-aux">
                   <span class="x-red">*</span>
@@ -51,13 +51,13 @@
 				<div class="layui-input-inline">
 					<input type="text" id="L_email" name="email" required=""
 						lay-verify="email" autocomplete="off" class="layui-input"
-						value="">
+						value="666666@qq.com">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label"><span class="x-red">*</span>角色</label>
 				<div class="layui-input-block">
-					<input type="checkbox" name="roleId" lay-skin="primary" th:each="role:${rolelist}" th:title="${role.name}" th:value="${role.ID}">
+					<input type="checkbox" name="roleId" lay-skin="primary" th:each="role:${roleList}" th:title="${role.name}" th:value="${role.ID}">
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -67,7 +67,7 @@
 				<div class="layui-input-inline">
 					<input type="password" id="L_pass" name="password" required=""
 						lay-verify="pass" autocomplete="off" class="layui-input"
-						value="">
+						value="123456">
 				</div>
 				<div class="layui-form-mid layui-word-aux">6到16个字符</div>
 			</div>
@@ -78,7 +78,7 @@
 				<div class="layui-input-inline">
 					<input type="password" id="L_repass" name="repass" required=""
 						lay-verify="repass" autocomplete="off" class="layui-input"
-						value="">
+						value="123456">
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -111,24 +111,21 @@
 
           //监听提交
           form.on('submit(add)', function(data){
-            $.ajax({
-            	url: data.form.action,
-                type: data.form.method,
-                data: $(data.form).serialize(),
-         		  success:function(){
-         			 layer.alert("增加成功", {icon: 6},function () {
-                         // 获得frame索引
-                         var index = parent.layer.getFrameIndex(window.name);
-                         //关闭当前frame
-                         parent.layer.close(index);
-                         parent.location.href='/userlist';
-                     });
-         		  }
-         	  });
-            return false;
+        		$.ajax({
+        	    	url: data.form.action,
+        	        type: data.form.method,
+        	        data: $(data.form).serialize(),
+        	 		  success:function(){
+        	            // 获得frame索引
+        	            var index = parent.layer.getFrameIndex(window.name);
+        	            //关闭当前frame
+        	            parent.layer.close(index);
+        	 			window.parent.location.reload();
+        	 		  }
+        	 	  });
+        	    
+        	    return false;
           });
-          
-          
         });
     </script>
 </body>

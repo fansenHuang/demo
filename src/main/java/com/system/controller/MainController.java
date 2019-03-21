@@ -97,8 +97,7 @@ public class MainController {
 		
 		List<Role> roleList = roleService.roleList(null, null, null);
 
-		map.put("rolelist", roleList);
-
+		map.put("roleList", roleList);
 		return "system/user/addUser";
 	}
 

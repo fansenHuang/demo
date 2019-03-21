@@ -157,7 +157,7 @@
 						th:onclick="'javascript:x_admin_show('+'\'编辑\''+','+'\''+'userEdit?id='+${user.ID }+'\''+')'"
 						href="javascript:;"> <i class="layui-icon">&#xe642;</i>
 					</a> <a title="删除"
-						th:onclick="'javascript:member_del('+this+','+${user.ID}+')'"
+						th:onclick="'javascript:member_del('+this+','+${user.ID}+','+'\'/user/del\''+')'"
 						href="javascript:;"> <i class="layui-icon">&#xe640;</i>
 					</a>
 					</td>
@@ -200,7 +200,7 @@
 		});
 
 		/*用户-删除*/
-		function member_del(obj, id) {
+		/* function member_del(obj, id) {
 			layer.confirm('确认要删除吗？', function(index) {
 				$.ajax({
 					url : "user/del",
@@ -208,17 +208,17 @@
 						"data" : id
 					},
 					success : function() {
-						//parent.location.href="/userlist";
 						$(obj).parents("tr").remove();
 						layer.msg('已删除!', {
 							icon : 1,
 							time : 1000
 						});
+						window.location.reload();
 					}
 				});
 
 			});
-		}
+		} */
 
 		function delAll() {
 
@@ -248,6 +248,7 @@
 			});
 		}
 	</script>
+	<script type="text/javascript" th:src="@{/js/core.js}"></script>
 </body>
 
 </html>
