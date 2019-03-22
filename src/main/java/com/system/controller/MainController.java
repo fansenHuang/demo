@@ -48,7 +48,7 @@ public class MainController {
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping("/userlist")
+	@RequestMapping("/userList")
 	public String userlist(Map<String, Object> map, String start, String end, String userName,
 			@RequestParam(value = "page", required = false, defaultValue = "1") Integer page) {
 
@@ -104,7 +104,7 @@ public class MainController {
 	@Resource
 	private RoleService roleService;
 
-	@RequestMapping("/rolelist")
+	@RequestMapping("/roleList")
 	public String role(Map<String, Object> map, String start, String end, String name,
 			@RequestParam(value = "page", required = false, defaultValue = "1") Integer page) {
 
@@ -148,7 +148,7 @@ public class MainController {
 	@Resource  
 	private ModuleService moduleService;
 
-	@RequestMapping("/modulelist")
+	@RequestMapping("/moduleList")
 	public String modulelist(Map<String, Object> map, String name, String type,
 			@RequestParam(value = "page", required = false, defaultValue = "1") Integer page) {
 

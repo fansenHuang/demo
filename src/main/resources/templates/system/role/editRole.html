@@ -54,11 +54,11 @@
                   data: $(data.form).serialize(),
            		  success:function(){
            			 layer.alert("保存成功", {icon: 6},function () {
-           				parent.location.href="/rolelist";
                          // 获得frame索引
                          var index = parent.layer.getFrameIndex(window.name);
                          //关闭当前frame
                          parent.layer.close(index);
+                         window.parent.location.reload();
                      });
            		  }
            	  });
