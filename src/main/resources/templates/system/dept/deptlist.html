@@ -36,7 +36,7 @@
 			</form>
 		</div>
 		<xblock>
-		<button class="layui-btn layui-btn-danger" onclick="delAll()">
+		<button class="layui-btn layui-btn-danger" onclick="delAll('/deptManage/delAll')">
 			<i class="layui-icon"> </i>批量删除
 		</button>
 		<button class="layui-btn" onclick="x_admin_show('添加模块','addDept')">
@@ -76,7 +76,7 @@
 						th:onclick="'javascript:x_admin_show('+'\'编辑\''+','+'\''+'/deptManage/editDept?id='+${dept.ID }+'\''+')'"
 						href="javascript:;"> <i class="layui-icon">&#xe642;</i>
 					</a> <a title="删除"
-						th:onclick="'javascript:member_del('+this+','+${dept.ID}+')'"
+						th:onclick="'javascript:member_del('+this+','+${dept.ID}+','+'\'/deptManage/del\''+')'"
 						href="javascript:;"> <i class="layui-icon">&#xe640;</i>
 					</a></td>
 				</tr>
@@ -117,57 +117,8 @@
 				elem : '#end' //指定元素
 			});
 		});
-
-		/*用户-删除*/
-		function member_del(obj, id) {
-			layer.confirm('确认要删除吗？', function(index) {
-				$.ajax({
-					url : "/deptManage/del",
-					data : {
-						"data" : id
-					},
-					success : function() {
-						$(obj).parents("tr").remove();
-						layer.msg('已删除!', {
-							icon : 1,
-							time : 1000
-						});
-					}
-				});
-			});
-		}
-
-		function delAll(argument) {
-
-			var data = tableCheck.getData();
-			if (data == '' || data == null) {
-				layer.msg('请选择要删除的数据', {
-					icon : 7
-				});
-				return;
-			}
-			layer.confirm('确认要删除吗？' + data, function(index) {
-
-				$.ajax({
-					url : "/deptManage/delAll",
-					data : {
-						"data" : data.join(',')
-					},
-					success : function() {
-						layer.msg('删除成功', {
-							icon : 1
-						});
-						$(".layui-form-checked").not('.header').parents('tr')
-								.remove();
-					}
-				});
-
-			});
-		}
-		
-	
-	    
 	</script>
+	<script type="text/javascript" th:src="@{/js/core.js}"></script>
 </body>
 
 </html>

@@ -14,62 +14,6 @@
 <script type="text/javascript" th:src="@{/js/jquery-1.9.1.min.js}"></script>
 <script type="text/javascript" th:src="@{/lib/layui/layui.js}" charset="utf-8"></script>
 <script type="text/javascript" th:src="@{/js/xadmin.js}"></script>
-<script>
-	/*用户-停用*/
-	function statusFun(ID) {
-
-		$.ajax({
-			url : "user/selectStatusById",
-			data : {
-				"id" : ID
-			},
-			success : function(status) {
-				if (status == 0) {
-					layer.confirm('确认要停用吗？', function(index) {
-						$.ajax({
-							url : "user/upodateStatus",
-							data : {
-								"id" : ID,
-								"status" : 1
-							},
-							success : function() {
-								$("#" + ID).addClass("layui-bg-red")
-										.html("未启用");
-
-								layer.msg('已停用!', {
-									icon : 2,
-									time : 1000
-								});
-							}
-						});
-
-					});
-				} else {
-					layer.confirm('确认要启用吗？', function(index) {
-						$.ajax({
-							url : "user/upodateStatus",
-							data : {
-								"id" : ID,
-								"status" : 0
-							},
-							success : function() {
-								$("#" + ID).removeClass("layui-bg-red").html(
-										"已启用");
-
-								layer.msg('已启用!', {
-									icon : 1,
-									time : 1000
-								});
-							}
-						});
-					});
-				}
-			}
-
-		})
-
-	}
-</script>
 </head>
 
 <body>
@@ -84,19 +28,16 @@
 	<div class="x-body">
 		<div class="layui-row">
 			<form class="layui-form layui-col-md12 x-so" id="userID">
-				<input class="layui-input" placeholder="开始日" name="start" id="start"
-					th:value="${start}"> <input class="layui-input"
-					placeholder="截止日" name="end" id="end" th:value="${end}"> <input
-						type="text" name="userName" placeholder="请输入用户名"
-						autocomplete="off" class="layui-input" id="username"
-						th:value="${userName}">
-							<button class="layui-btn" lay-submit="" lay-filter="sreach">
-								<i class="layui-icon">&#xe615;</i>
-							</button>
+				<input class="layui-input" placeholder="开始日" name="start" id="start" th:value="${start}"></input>
+				<input class="layui-input" placeholder="截止日" name="end" id="end" th:value="${end}"></input>
+				<input type="text" name="userName" placeholder="请输入用户名" autocomplete="off" class="layui-input" id="username" th:value="${userName}"></input>
+				<button class="layui-btn" lay-submit="" lay-filter="sreach">
+					<i class="layui-icon">&#xe615;</i>
+				</button>
 			</form>
 		</div>
 		<xblock>
-		<button class="layui-btn layui-btn-danger" onclick="delAll()">
+		<button class="layui-btn layui-btn-danger" onclick="delAll('user/delAll')">
 			<i class="layui-icon"></i>批量删除
 		</button>
 		<button class="layui-btn" onclick="x_admin_show('添加用户','addUser')">
@@ -141,13 +82,13 @@
 						<p th:if="${user.status==0}">
 							<span class="layui-btn layui-btn-normal layui-btn-mini"
 								th:id="${user.ID}"
-								th:onclick="'javascript:statusFun('+${user.ID}+')'">已启用</span>
+								th:onclick="'javascript:statusFun('+${user.ID}+','+'\'user/selectStatusById\''+','+'\'user/upodateStatus\''+')'">已启用</span>
 						</p>
 						<p th:if="${user.status==1}">
 							<span
 								class="layui-btn layui-btn-normal layui-btn-mini layui-bg-red"
 								th:id="${user.ID}"
-								th:onclick="'javascript:statusFun('+${user.ID}+')'">未启用</span>
+								th:onclick="'javascript:statusFun('+${user.ID}+','+'\'user/selectStatusById\''+','+'\'user/upodateStatus\''+')'">未启用</span>
 						</p>
 					</td>
 					<td class="td-manage">
@@ -198,55 +139,7 @@
 				elem : '#end' //指定元素
 			});
 		});
-
-		/*用户-删除*/
-		/* function member_del(obj, id) {
-			layer.confirm('确认要删除吗？', function(index) {
-				$.ajax({
-					url : "user/del",
-					data : {
-						"data" : id
-					},
-					success : function() {
-						$(obj).parents("tr").remove();
-						layer.msg('已删除!', {
-							icon : 1,
-							time : 1000
-						});
-						window.location.reload();
-					}
-				});
-
-			});
-		} */
-
-		function delAll() {
-
-			var data = tableCheck.getData();
-			if (data == '' || data == null) {
-				layer.msg('请选择要删除的数据', {
-					icon : 7
-				});
-				return;
-			}
-			layer.confirm('确认要删除吗？' + data, function(index) {
-
-				$.ajax({
-					url : "user/delAll",
-					data : {
-						"data" : data.join(',')
-					},
-					success : function() {
-						//parent.location.href="/userlist";
-						layer.msg('删除成功', {
-							icon : 1
-						});
-						$(".layui-form-checked").not('.header').parents('tr')
-								.remove();
-					}
-				});
-			});
-		}
+		
 	</script>
 	<script type="text/javascript" th:src="@{/js/core.js}"></script>
 </body>

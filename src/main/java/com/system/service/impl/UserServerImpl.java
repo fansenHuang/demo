@@ -64,12 +64,15 @@ public class UserServerImpl implements UserService {
 
 	@Override
 	public void saveUserRole(Integer[] roleIds, Integer userId) {
-		usersMapper.deleteUserRole(userId);//重新编辑的时候 起作用 
 		
 		for (Integer roleId : roleIds) {
 			usersMapper.saveUserRole(userId, roleId);
 		}
 
+	}
+	
+	public void deleteUserRole(Integer userId){
+		usersMapper.deleteUserRole(userId);//重新编辑的时候 起作用 
 	}
 
 	@Override

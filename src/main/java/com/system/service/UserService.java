@@ -17,6 +17,8 @@ public interface UserService {
 
 	void saveUserRole(Integer[] roleIds, Integer userId);
 
+	void deleteUserRole(Integer userId);
+	
 	//查询状态 是否启用
 	String selectStatusById(Integer id);
 

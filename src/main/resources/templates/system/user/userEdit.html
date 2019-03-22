@@ -93,7 +93,20 @@
 
           //监听提交
           form.on('submit(add)', function(data){
-        	  layuiSubmit(data);
+        	  $.ajax({
+					url : data.form.action,
+					type : data.form.method,
+					data : $(data.form).serialize(),
+					success : function() {
+						// 获得frame索引
+						var index = parent.layer.getFrameIndex(window.name);
+						//关闭当前frame
+						parent.layer.close(index);
+						window.parent.location.reload();
+					}
+				});
+
+				return false;
           });
           
           

@@ -51,6 +51,7 @@ public class UserController {
 	}
 
 	// 增加用户
+	@ResponseBody
 	@RequestMapping("addUser")
 	public String andUser(User user,@RequestParam(value="roleId",required=false)Integer[] roleIds) {
 		
@@ -61,7 +62,7 @@ public class UserController {
 			userService.saveUserRole(roleIds,user.getID());
 		}
 		
-		return "redirect:/userlist";
+		return "success";
 
 	}
 
@@ -81,12 +82,14 @@ public class UserController {
 	public String editUser(User user,@RequestParam(value="roleId",required=false)Integer[] roleIds) {
 		
 		userService.editUser(user);
+		//先删除所有的角色
+		userService.deleteUserRole(user.getID());
 		if (roleIds!=null&&roleIds.length>0) {
 
 			userService.saveUserRole(roleIds, user.getID());
 		}
 
-		return "redirect:/userlist";// ajax请求，不会重定向
+		return "success";// ajax请求，不会重定向
 	}
 
 	// 删除
