@@ -44,7 +44,7 @@ public class AuthRealm extends AuthorizingRealm {
 		User user = (User) SecurityUtils.getSubject().getPrincipal();
 		// 准备用户的真实的模块信息
 		Set<String> moduleList = userService.findModuleListById(user.getID().toString());
-
+		
 		// 权限认证的对象
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 

@@ -39,7 +39,7 @@ public class RoleController {
 
 		roleService.addRole(role);
 
-		return "redirect:/rolelist";// ajax请求 不能重定向
+		return "success";// ajax请求 不能重定向
 	}
 
 	@ResponseBody
@@ -48,7 +48,7 @@ public class RoleController {
 
 		roleService.saveEditRole(role);
 
-		return "redirect:/rolelist";// ajax请求 不能重定向
+		return "success";// ajax请求 不能重定向
 	}
 
 	// 批量删除
@@ -108,6 +108,7 @@ public class RoleController {
 		return "system/role/addRoleModule";
 	}
 
+	@ResponseBody
 	@RequestMapping("saveRoleModule")
 	public String saveRoleModule(String ID, String[] moduleIds) {
 
@@ -116,7 +117,7 @@ public class RoleController {
 		
 		roleService.addRoleModule(ID, moduleIds);
 
-		return "redirect:/rolelist";
+		return "success";
 	}
 
 }

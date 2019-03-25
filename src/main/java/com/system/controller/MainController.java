@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.github.pagehelper.PageHelper;
@@ -41,7 +42,12 @@ public class MainController {
 	}
 
 	@RequestMapping("/index")
-	public String index() throws JsonProcessingException {
+	public String index(Map<String, Object> map) throws JsonProcessingException {
+		
+//		查询一级菜单
+		List<Module> moduleList = moduleService.modulelist(null, null);
+		
+		map.put("moduleList", moduleList);
 		return "index";
 	}
 
@@ -130,7 +136,7 @@ public class MainController {
 		map.put("end", end);
 		map.put("name", name);
 
-		return "system/role/rolelist";
+		return "system/role/roleList";
 	}
 
 	@RequestMapping("/addRole")

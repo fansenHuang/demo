@@ -26,6 +26,7 @@ public class ShiroConfiguration {
 	public ShiroFilterFactoryBean shiroFilter(@Qualifier("securityManager") SecurityManager manager) {
 		ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
 		bean.setSecurityManager(manager);
+		
 		// 配置登录的url和登录成功的url
 		bean.setLoginUrl("/login");
 //		bean.setSuccessUrl("/home");
@@ -59,6 +60,9 @@ public class ShiroConfiguration {
 	public AuthRealm authRealm(@Qualifier("credentialsMatcher") CredentialsMatcher matcher) {
 		AuthRealm authRealm = new AuthRealm();
 		authRealm.setCredentialsMatcher(matcher);
+		
+		//关闭授权缓存
+		authRealm.setAuthorizationCachingEnabled(false);
 		return authRealm;
 	}
 
@@ -88,9 +92,13 @@ public class ShiroConfiguration {
 		return advisor;
 	}
 	
-   /* @Bean
+	/**
+	 * 添加这段代码的目的就是为了在thymeleaf中使用shiro的自定义tag。
+	 * @return
+	 */
+    @Bean
     public ShiroDialect shiroDialect() {
         return new ShiroDialect();
     }
-    */
+   
 }
