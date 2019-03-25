@@ -73,7 +73,7 @@ public class UserServerImpl implements UserService {
 		}
 
 	}
-	
+	@Override
 	public void deleteUserRole(Integer userId){
 		usersMapper.deleteUserRole(userId);//重新编辑的时候 起作用 
 	}
