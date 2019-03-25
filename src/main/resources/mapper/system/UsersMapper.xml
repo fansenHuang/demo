@@ -27,11 +27,18 @@
 
 	<!-- 根据用户名查询 -->
 	<select id="findUserByUserName" resultMap="usersRM">
-		SELECT * FROM user WHERE user_name = #{userName}
+		SELECT * FROM user WHERE user_name = #{userName} and status <![CDATA[!= ]]> 1
 	</select>
 	<!-- 根据用户ID查询用户角色表 -->
 	<select id="findRoleIdByUserId" resultType="String">
-		select role_id from user_role where user_id = #{userId}
+		select ur.role_id from user_role ur 
+		left join (select ID,status st from role)r on ur.role_id = r.ID 
+		where ur.user_id = #{userId} and r.st <![CDATA[!= ]]> 1 
+	</select>
+	
+	<!-- 根据用户ID查询用户角色表 区别上个 这个只是用于用户增改角色 -->
+	<select id="findRoleId" resultType="String">
+		select role_id from user_role where user_id = #{userId} 
 	</select>
 	<!-- 根据userId删除用户角色关联信息 -->
 	<delete id="deleteUserRole">

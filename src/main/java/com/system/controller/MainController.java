@@ -26,8 +26,9 @@ import com.system.service.UserService;
 
 /**
  * 本来只是想只做跳转的。。。
- * @author Administrator
+ * @author wendong
  *
+ * 2019年3月25日
  */
 @Controller
 public class MainController {
@@ -43,8 +44,7 @@ public class MainController {
 
 	@RequestMapping("/index")
 	public String index(Map<String, Object> map) throws JsonProcessingException {
-		
-//		查询一级菜单
+
 		List<Module> moduleList = moduleService.modulelist(null, null);
 		
 		map.put("moduleList", moduleList);
@@ -58,7 +58,7 @@ public class MainController {
 	public String userlist(Map<String, Object> map, String start, String end, String userName,
 			@RequestParam(value = "page", required = false, defaultValue = "1") Integer page) {
 
-		PageHelper.startPage(page, 6);
+		PageHelper.startPage(page, 8);
 		List<User> userList = userService.userList(start, end, userName);
 
 		PageInfo<User> pageInfo = new PageInfo<User>(userList);
@@ -114,7 +114,7 @@ public class MainController {
 	public String role(Map<String, Object> map, String start, String end, String name,
 			@RequestParam(value = "page", required = false, defaultValue = "1") Integer page) {
 
-		PageHelper.startPage(page, 6);
+		PageHelper.startPage(page, 8);
 		List<Role> roleList = roleService.roleList(start, end, name);
 
 		PageInfo<Role> pageInfo = new PageInfo<>(roleList);
@@ -158,7 +158,7 @@ public class MainController {
 	public String modulelist(Map<String, Object> map, String name, String type,
 			@RequestParam(value = "page", required = false, defaultValue = "1") Integer page) {
 
-		PageHelper.startPage(page, 6);
+		PageHelper.startPage(page, 8);
 		List<Module> modulelist = moduleService.modulelist(name, type);
 		Set<String> typeSet = new TreeSet<>();
 

@@ -26,7 +26,14 @@ public interface UsersMapper {
 	 * @return
 	 */
 	public List<String> findRoleIdByUserId(String userId);
-
+	
+	/**
+	 * 上面这个用于用户权限 这个用于是用户列表
+	 * @param userId
+	 * @return
+	 */
+	public List<String> findRoleId(String userId);
+	
 	/**
 	 * 根据userId删除用户角色关联信息
 	 * 

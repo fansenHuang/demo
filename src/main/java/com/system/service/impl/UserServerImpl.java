@@ -37,13 +37,16 @@ public class UserServerImpl implements UserService {
 	@Override
 	public Set<String> findModuleListById(String userId) {
 		List<String> roleList = usersMapper.findRoleIdByUserId(userId);
+	
 		Set<String> moduleIdsSet = new HashSet<>();
 		for (String roleId : roleList) {
 			moduleIdsSet.addAll(roleMapper.findModuleIdByRoleId(roleId));
 		}
 		List<String> moduleIdsList = new ArrayList<>(moduleIdsSet);
 		Set<String> moduleNames = new HashSet<>();
-		moduleNames.addAll(moduleMapper.findModuleNameByModuleId(moduleIdsList));
+		if (!moduleIdsList.isEmpty()) {
+			moduleNames.addAll(moduleMapper.findModuleNameByModuleId(moduleIdsList));
+		}
 		return moduleNames;
 	}
 
@@ -59,7 +62,7 @@ public class UserServerImpl implements UserService {
 	@Override
 	public List<String> findRoleIdByUserId(String userId) {
 
-		return usersMapper.findRoleIdByUserId(userId);
+		return usersMapper.findRoleId(userId);
 	}
 
 	@Override

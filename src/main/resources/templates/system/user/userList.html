@@ -110,16 +110,16 @@
 
 				<a th:if="${pageInfo.isFirstPage==true}">首页</a> <a
 					th:if="${pageInfo.isFirstPage==false}"
-					th:href="@{userlist(page=${pageInfo.firstPage },start=${start},end=${end},userName=${userName})}">首页</a>
+					th:href="@{userList(page=${pageInfo.firstPage },start=${start},end=${end},userName=${userName})}">首页</a>
 				<a th:if="${pageInfo.hasPreviousPage==true}"
-					th:href="@{userlist(page=${pageInfo.prePage },start=${start},end=${end},userName=${userName})}">上一页</a>
+					th:href="@{userList(page=${pageInfo.prePage },start=${start},end=${end},userName=${userName})}">上一页</a>
 				<a th:if="${pageInfo.hasPreviousPage==false}">上一页</a> <a
 					th:if="${pageInfo.hasNextPage==true}"
-					th:href="@{userlist(page=${pageInfo.nextPage },start=${start},end=${end},userName=${userName})}">下一页</a>
+					th:href="@{userList(page=${pageInfo.nextPage },start=${start},end=${end},userName=${userName})}">下一页</a>
 				<a th:if="${pageInfo.hasNextPage==false}">下一页</a> <a
 					th:if="${pageInfo.isLastPage==true}">末页</a> <a
 					th:if="${pageInfo.isLastPage==false}"
-					th:href="@{userlist(page=${pageInfo.lastPage},start=${start},end=${end},userName=${userName})}">末页</a>
+					th:href="@{userList(page=${pageInfo.lastPage},start=${start},end=${end},userName=${userName})}">末页</a>
 
 			</div>
 		</div>

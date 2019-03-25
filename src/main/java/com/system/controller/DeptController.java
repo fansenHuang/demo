@@ -45,7 +45,7 @@ public class DeptController {
 	public String deptlist(Map<String, Object> map, String start, String end, String name,
 			@RequestParam(value = "page", required = false, defaultValue = "1") Integer page) throws ParseException {
 				
-		PageHelper.startPage(page, 6);
+		PageHelper.startPage(page, 12);
 		List<Dept> deptList = deptService.deptList(start, end, name);
 
 		PageInfo<Dept> pageInfo = new PageInfo<Dept>(deptList);

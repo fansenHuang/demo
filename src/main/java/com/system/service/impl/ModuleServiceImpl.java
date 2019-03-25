@@ -13,6 +13,12 @@ import com.system.entity.User;
 import com.system.mapper.ModuleMapper;
 import com.system.service.ModuleService;
 
+/**
+ * 
+ * @author wendong
+ *
+ * 2019年3月25日
+ */
 @Service
 public class ModuleServiceImpl implements ModuleService {
 

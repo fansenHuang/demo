@@ -41,7 +41,6 @@ public class LoginController {
             User user=(User) subject.getPrincipal();
             //存入session
             session.setAttribute("user", user);
-//            map.put("user", user);
             return "redirect:index";
         } catch(AuthenticationException e) {
         	//用户名或密码错误

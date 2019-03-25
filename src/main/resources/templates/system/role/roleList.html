@@ -116,16 +116,16 @@
 
 				<a th:if="${pageInfo.isFirstPage==true}">首页</a> 
 				<a th:if="${pageInfo.isFirstPage==false}"
-					th:href="@{rolelist(page=${pageInfo.firstPage },start=${start},end=${end},name=${name})}">首页</a>
+					th:href="@{roleList(page=${pageInfo.firstPage },start=${start},end=${end},name=${name})}">首页</a>
 				<a th:if="${pageInfo.hasPreviousPage==true}"
-					th:href="@{rolelist(page=${pageInfo.prePage },start=${start},end=${end},name=${name})}">上一页</a>
+					th:href="@{roleList(page=${pageInfo.prePage },start=${start},end=${end},name=${name})}">上一页</a>
 				<a th:if="${pageInfo.hasPreviousPage==false}">上一页</a> 
 				<a th:if="${pageInfo.hasNextPage==true}"
-					th:href="@{rolelist(page=${pageInfo.nextPage },start=${start},end=${end},name=${name})}">下一页</a>
+					th:href="@{roleList(page=${pageInfo.nextPage },start=${start},end=${end},name=${name})}">下一页</a>
 				<a th:if="${pageInfo.hasNextPage==false}">下一页</a> 
 				<a th:if="${pageInfo.isLastPage==true}">末页</a> 
 				<a th:if="${pageInfo.isLastPage==false}"
-					th:href="@{rolelist(page=${pageInfo.lastPage},start=${start},end=${end},name=${name})}">末页</a>
+					th:href="@{roleList(page=${pageInfo.lastPage},start=${start},end=${end},name=${name})}">末页</a>
 
 			</div>
 		</div>
