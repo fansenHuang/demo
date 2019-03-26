@@ -10,7 +10,17 @@ public class Module extends BaseEntity {
 	private String remark;// 描述
 	private String url;//路径
 	private String checked;//是否被选中
+	private String icon;//图标
 	
+	
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
+
 	public String getChecked() {
 		return checked;
 	}

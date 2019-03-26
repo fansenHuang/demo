@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.core.util.MD5Hash;
@@ -16,9 +17,10 @@ import com.system.service.ModuleService;
 
 /**
  * 权限
+ * 
  * @author wendong
  *
- * 2019年2月22日
+ *         2019年2月22日
  */
 @Controller
 @RequestMapping("/module/")
@@ -50,8 +52,9 @@ public class ModuleController {
 	// 增加模块
 	@ResponseBody
 	@RequestMapping("addModule")
-	public String addModule(Module module) {
+	public String addModule(Module module,@RequestParam(value="icon")String icon) {
 
+		module.setIcon("&#"+module.getIcon());
 		moduleService.addModule(module);
 		return "success";
 
@@ -66,5 +69,5 @@ public class ModuleController {
 		return "success";
 
 	}
-	
+
 }

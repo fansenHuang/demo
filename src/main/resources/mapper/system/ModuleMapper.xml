@@ -52,14 +52,15 @@
 	</delete>
 
 	<insert id="addModule">
-		insert into module(name,parentId,type,remark,url,create_by,create_time) values(
+		insert into module(name,parentId,type,remark,url,create_by,create_time,icon) values(
 			#{name},
 			#{parentModule.ID},
 			#{type},
 			#{remark},
 			#{url},
 			#{createBy},
-			#{createTime}
+			#{createTime},
+			#{icon}
 		)
 	</insert>
 
