@@ -80,7 +80,7 @@ public Module getParentModule() {
 	@Override
 	public String toString() {
 		return "Module [name=" + name + ", parentModule=" + parentModule + ", type=" + type + ", remark=" + remark
-				+ ", url=" + url + "]";
+				+ ", url=" + url + ", checked=" + checked + ", icon=" + icon + "]";
 	}
 	
 }

@@ -1,18 +1,19 @@
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
-	<meta charset="UTF-8">
+	<meta charset="utf-8">
 	<title>后台登录-X-admin2.0</title>
-	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" th:href="@{/css/font.css}">
 	<link rel="stylesheet" th:href="@{/css/xadmin.css}">
+	<link rel="stylesheet" th:href="@{../lib/layui/css/layui.css}">
 	<script type="text/javascript" th:src="@{/js/moment.js}"></script>
-    <script type="text/javascript" th:src="@{/js/jquery-1.9.1.min.js}"></script>
-    <script th:src="@{lib/layui/layui.js}" charset="utf-8"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/lib/layui/layui.js}" charset="utf-8"></script>
     <script type="text/javascript" th:src="@{/js/xadmin.js}"></script>
 </head>
 <body>
@@ -53,14 +54,14 @@
         <ul id="nav">
             <li th:each="module:${moduleList}" th:if="${module.parentModule==null}" shiro:hasPermission="${module.name}">
                 <a href="javascript:;">
-                    <i class="iconfont">&#xe6b8;</i>
+                    <i aria-hidden="true" th:text="${module.icon}" class="layui-icon"></i>
                     <cite th:text="${module.name}"></cite>
                     <i class="iconfont nav_right">&#xe697;</i>
                 </a>
                 <ul class="sub-menu">
                     <li th:each="module2:${moduleList}" th:if="${module2.parentModule!=null&&module2.parentModule.ID==module.ID}" shiro:hasPermission="${module2.name}">
                         <a th:_href="${module2.url}" >
-                            <i class="iconfont">&#xe6a7;</i>
+                            <i class="layui-icon">&#xe68e;</i>
                             <cite th:text="${module2.name}"></cite>
                         </a>
                     </li >

@@ -46,7 +46,7 @@ public class MainController {
 	public String index(Map<String, Object> map) throws JsonProcessingException {
 
 		List<Module> moduleList = moduleService.modulelist(null, null);
-		
+		System.out.println("MainController.index()"+moduleList);
 		map.put("moduleList", moduleList);
 		return "index";
 	}
