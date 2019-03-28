@@ -79,11 +79,11 @@
 								id="select_icon">选择图标</i></li>
 						</ul>
 					</div>
-					<div style="dmargin-left: 20px; margin-top: 5px;display: none;">
+					<!-- <div style="dmargin-left: 20px; margin-top: 5px;display: none;">
 						<ul>
 							<li style="display: inline-block; width: 50px;" id="menu-icon2"><input id="icon2" name="icon"></li>
 						</ul>
-					</div>
+					</div> -->
 				</div>
 					
 			</div>
@@ -126,10 +126,12 @@
           });
           //监听提交
           form.on('submit(add)', function(data){
+        	  data.field['icon']=$('#icon').text();
             $.ajax({
             	url: data.form.action,
                 type: data.form.method,
-                data: $(data.form).serialize(),
+                //data: $(data.form).serialize(),
+                data:data.field,
          		  success:function(){
          			 layer.alert("增加成功", {icon: 6},function () {
                          // 获得frame索引

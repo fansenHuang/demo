@@ -41,7 +41,7 @@ public class DeptController {
 	private DeptService deptService;
 
 	// 部门列表
-	@RequestMapping("/deptlist")
+	@RequestMapping("deptlist")
 	public String deptlist(Map<String, Object> map, String start, String end, String name,
 			@RequestParam(value = "page", required = false, defaultValue = "1") Integer page) throws ParseException {
 				

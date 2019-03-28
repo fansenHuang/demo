@@ -13,16 +13,15 @@
        var layer = layui.layer;
     $('li').on('click',function(){
       var text=$(this).find('div').eq(1).html();
-      var text2 = text.substring(6,text.length).toString();
+      /* var text2 = text.substring(6,text.length).toString(); */
       text=text.substring(5,text.length);
-      alert(text);
       var icon=$("#menu-icon" , window.parent.frames[0].document);
       icon.find('i').remove();
       icon.append('<i class="layui-icon" id="icon" style="font-size: 25px;">&'+text+'</i>');
       
-      var icon2=$("#menu-icon2" , window.parent.frames[0].document);
+      /* var icon2=$("#menu-icon2" , window.parent.frames[0].document);
       icon2.find('input').remove();
-      icon2.append('<input id="icon2" name="icon" value="'+text2+'"></input>');
+      icon2.append('<input id="icon2" name="icon" value="'+text2+'"></input>'); */
       
       var index = parent.layer.getFrameIndex(window.name);
       parent.layer.close(index);
@@ -54,6 +53,7 @@
 <body>
 
 <ul class="site-doc-icon">
+
   <li>
     <i class="layui-icon"></i>
     <div class="name">主页</div>

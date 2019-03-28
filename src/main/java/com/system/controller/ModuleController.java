@@ -52,9 +52,7 @@ public class ModuleController {
 	// 增加模块
 	@ResponseBody
 	@RequestMapping("addModule")
-	public String addModule(Module module,@RequestParam(value="icon")String icon) {
-
-		module.setIcon("&#"+module.getIcon());
+	public String addModule(Module module) {
 		moduleService.addModule(module);
 		return "success";
 
@@ -64,7 +62,6 @@ public class ModuleController {
 	@ResponseBody
 	@RequestMapping("saveEditModule")
 	public String saveEditModule(Module module) {
-
 		moduleService.saveEditModule(module);
 		return "success";
 

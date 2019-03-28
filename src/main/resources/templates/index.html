@@ -61,7 +61,7 @@
                 <ul class="sub-menu">
                     <li th:each="module2:${moduleList}" th:if="${module2.parentModule!=null&&module2.parentModule.ID==module.ID}" shiro:hasPermission="${module2.name}">
                         <a th:_href="${module2.url}" >
-                            <i class="layui-icon">&#xe68e;</i>
+                            <i aria-hidden="true" th:text="${module2.icon}" class="layui-icon"></i>
                             <cite th:text="${module2.name}"></cite>
                         </a>
                     </li >

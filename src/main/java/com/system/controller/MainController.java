@@ -46,7 +46,6 @@ public class MainController {
 	public String index(Map<String, Object> map) throws JsonProcessingException {
 
 		List<Module> moduleList = moduleService.modulelist(null, null);
-		System.out.println("MainController.index()"+moduleList);
 		map.put("moduleList", moduleList);
 		return "index";
 	}
@@ -61,10 +60,11 @@ public class MainController {
 		PageHelper.startPage(page, 8);
 		List<User> userList = userService.userList(start, end, userName);
 
+		System.out.println("MainController.userlist()"+userList.size());
+		
 		PageInfo<User> pageInfo = new PageInfo<User>(userList);
 
 		map.put("pageInfo", pageInfo);
-		map.put("userList", userList);
 
 		map.put("start", start);
 		map.put("end", end);
