@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.notice.mapper.NoticeMapper">
+
+	<resultMap type="Notice" id="NRM" autoMapping="true">
+		<id column="ID" property="ID" />
+	</resultMap>
+
+	<insert id="saveNotice" parameterType="Notice" useGeneratedKeys="true"
+		keyProperty="ID">
+		insert into
+		notice(type,title,content,status,create_by,create_time) values(
+		#{type},
+		#{title},
+		#{content},
+		#{status},
+		#{createBy},
+		#{createTime}
+		)
+	</insert>
+
+	<select id="noticeList" resultMap="NRM">
+		select * from notice
+		<where>
+			<if test="type!=null and type!=''">
+				type = #{type}
+			</if>
+			<if test="start!=null and start!=''">
+				DATE_FORMAT(create_time,'%Y-%m-%d') <![CDATA[>= ]]>
+				#{start}
+			</if>
+			<if test="end!=null and end!=''">
+				and DATE_FORMAT(create_time,'%Y-%m-%d') <![CDATA[<= ]]>
+				#{end}
+			</if>
+			<if test="title!=null and title!=''">
+				and title like concat(concat('%',#{title}),'%')
+			</if>
+			<if test="status!=null and status!=''">
+				and status = #{status}
+			</if>
+		</where>
+	</select>
+
+	<!-- 批量删除 -->
+	<delete id="delAll">
+		delete from notice where ID in(
+		<foreach collection="ids" item="id" separator=",">
+			#{id}
+		</foreach>
+		)
+	</delete>
+
+	<!-- status=1 表示 发送 -->
+	<update id="updateStatusById">
+		update notice set status=1 where ID=#{id}
+	</update>
+	
+	<select id="findNoticeById" resultMap="NRM">
+		select * from notice where ID=#{id}
+	</select>
+	
+</mapper>

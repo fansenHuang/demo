@@ -63,7 +63,7 @@ function member_del(obj, id, url) {
 				"data" : id
 			},
 			success : function() {
-				$(obj).parents("tr").remove();
+				//$(obj).parents("tr").remove();
 				layer.msg('已删除!', {
 					icon : 1,
 					time : 1000
@@ -100,7 +100,8 @@ function delAll(url) {
 				layer.msg('删除成功', {
 					icon : 1
 				});
-				$(".layui-form-checked").not('.header').parents('tr').remove();
+				//$(".layui-form-checked").not('.header').parents('tr').remove();
+				window.location.reload();
 			}
 		});
 	});

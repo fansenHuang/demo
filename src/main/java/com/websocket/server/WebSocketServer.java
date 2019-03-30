@@ -54,12 +54,12 @@ public class WebSocketServer {
 		addOnlineCount();
 		System.out.println("WebSocketServer.onOpen()"+"有窗口开始监听："+sid+",当前在线人数："+getOnlineCount());
 		this.sid = sid;
-		try {
+		/*try {
 			sendMessage("连接成功");
 		} catch (IOException e) {
 			// log.error("websocket IO异常");
 			System.out.println("WebSocketServer.onOpen()"+"websocket IO异常");
-		}
+		}*/
 	}
 
 	/**

@@ -1,4 +1,4 @@
-package com.websocket.entity;
+package com.notice.entity;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;

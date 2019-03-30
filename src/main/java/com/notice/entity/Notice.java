@@ -1,4 +1,4 @@
-package com.websocket.entity;
+package com.notice.entity;
 
 import com.core.entity.BaseEntity;
 

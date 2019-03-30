@@ -28,8 +28,8 @@
 	<div class="x-body">
 		<div class="layui-row">
 			<form class="layui-form layui-col-md12 x-so" id="userID">
-				<input class="layui-input" placeholder="开始日" name="start" id="start" th:value="${start}"></input>
-				<input class="layui-input" placeholder="截止日" name="end" id="end" th:value="${end}"></input>
+				<input class="layui-input" placeholder="开始日" autocomplete="off" name="start" id="start" th:value="${start}"></input>
+				<input class="layui-input" placeholder="截止日" autocomplete="off" name="end" id="end" th:value="${end}"></input>
 				<input type="text" name="userName" placeholder="请输入用户名" autocomplete="off" class="layui-input" id="username" th:value="${userName}"></input>
 				<button class="layui-btn" lay-submit="" lay-filter="sreach">
 					<i class="layui-icon">&#xe615;</i>

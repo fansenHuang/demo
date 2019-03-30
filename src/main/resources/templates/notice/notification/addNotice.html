@@ -53,11 +53,12 @@
 						lay-verify="required" autocomplete="off" class="layui-textarea"  value=""></textarea>
 				</div>
 			</div>
-			<div class="layui-row">
+			<div class="layui-form-item">
+					<label for="L_repass" class="layui-form-label"></label>
 					<button class="layui-btn" lay-filter="add" lay-submit="">发送</button>
 				
-					<label for="L_repass" class="layui-form-label"> </label>
-					<button class="layui-btn" lay-filter="drafts" lay-submit="">草稿箱</button>
+					
+					<button class="layui-btn" lay-filter="drafts" lay-submit="">保存草稿</button>
 				
 			</div>
 		</form>
@@ -89,18 +90,32 @@
             	url: data.form.action,
                 type: data.form.method,
                 data: $(data.form).serialize(),
-         		  success:function(){
-         			 layer.alert("发送成功", {icon: 6},function () {
-                         // 获得frame索引
-                         var index = parent.layer.getFrameIndex(window.name);
-                         //关闭当前frame
-                         parent.layer.close(index);
-                        // parent.location.href='/notice';
-                     });
-         		  }
+                success : function() {
+					// 获得frame索引
+					var index = parent.layer.getFrameIndex(window.name);
+					//关闭当前frame
+					parent.layer.close(index);
+					window.parent.location.reload();
+				}
          	  });
             return false;
           });
+          
+          form.on('submit(drafts)', function(data){
+              $.ajax({
+              	url: "/notice/saveDrafts",
+                  type: data.form.method,
+                  data: $(data.form).serialize(),
+           		  success:function(){
+           		// 获得frame索引
+						var index = parent.layer.getFrameIndex(window.name);
+						//关闭当前frame
+						parent.layer.close(index);
+						window.parent.location.reload();
+           		  }
+           	  });
+              return false;
+            });
         });
         
     </script>

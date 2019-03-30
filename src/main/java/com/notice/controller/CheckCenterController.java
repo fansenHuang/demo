@@ -1,4 +1,4 @@
-package com.websocket.controller;
+package com.notice.controller;
 
 import java.io.IOException;
 

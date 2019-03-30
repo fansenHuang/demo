@@ -14,7 +14,7 @@
 		select * from dept
 	</select>
 	
-	<insert id="saveDept" parameterType="Dept" useGeneratedKeys="true" keyProperty="id">
+	<insert id="saveDept" parameterType="Dept" useGeneratedKeys="true" keyProperty="ID">
 		insert into dept(name,pId,create_by,create_time) values(
 			#{name},
 			#{pId},
