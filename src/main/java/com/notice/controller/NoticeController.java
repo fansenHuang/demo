@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.druid.sql.dialect.oracle.ast.clause.OracleLobStorageClause;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.notice.entity.Notice;
@@ -34,7 +35,7 @@ public class NoticeController {
 	private NoticeService noticeService;
 
 	/**
-	 * 跳转到列表页面
+	 * 跳转到消息推送列表页面
 	 * 
 	 * @return
 	 */
@@ -68,6 +69,19 @@ public class NoticeController {
 	public String addNotice() {
 
 		return "notice/notification/addNotice";
+	}
+
+	/**
+	 * 点击信息提示框跳到详情里面
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/topNotice")
+	public String topNotice(Map<String, Object> map, String id) {
+
+		Notice notice = noticeService.findNoticeById(id);
+		map.put("notice", notice);
+		return "notice/notification/topNotice";
 	}
 
 	/**
@@ -112,7 +126,6 @@ public class NoticeController {
 	@ResponseBody
 	@RequestMapping("delAll")
 	public String delAll(String data) {
-		System.out.println("NoticeController.delAll()" + data);
 		String[] ids = data.split(",");
 		noticeService.delAll(ids);
 		return "success";
@@ -143,15 +156,15 @@ public class NoticeController {
 	@ResponseBody
 	@RequestMapping("send")
 	public String send(String id) {
-		
+
 		noticeService.updateStatusById(id);
-		
+
 		Notice notice = noticeService.findNoticeById(id);
 		String message = notice.getID() + "-" + notice.getType() + "-" + notice.getContent();
 		try {
 			WebSocketServer.sendInfo(message, null);
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 		return "success";

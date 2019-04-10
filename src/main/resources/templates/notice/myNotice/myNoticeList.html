@@ -11,7 +11,8 @@
 <link rel="stylesheet" th:href="@{/css/xadmin.css}">
 <script type="text/javascript" th:src="@{/js/moment.js}"></script>
 <script type="text/javascript" th:src="@{/js/jquery-1.9.1.min.js}"></script>
-<script type="text/javascript" th:src="@{/lib/layui/layui.js}" charset="utf-8"></script>
+<script type="text/javascript" th:src="@{/lib/layui/layui.js}"
+	charset="utf-8"></script>
 <script type="text/javascript" th:src="@{/js/xadmin.js}"></script>
 </head>
 <body>
@@ -45,8 +46,8 @@
 				<div class="layui-input-inline">
 					<select name="status">
 						<option value="">状态</option>
-						<option value="1">已发布</option>
-						<option value="0">草稿箱</option>
+						<option value="1">已阅读</option>
+						<option value="0">未阅读</option>
 					</select>
 				</div>
 				<button class="layui-btn" lay-submit="" lay-filter="sreach">
@@ -54,16 +55,7 @@
 				</button>
 			</form>
 		</div>
-		<xblock>
-		<button class="layui-btn layui-btn-danger"
-			onclick="delAll('/notice/delAll')">
-			<i class="layui-icon"></i>批量删除
-		</button>
-		<button class="layui-btn"
-			onclick="x_admin_show('添加用户','/notice/addNotice','600','360')">
-			<i class="layui-icon"></i>新增
-		</button>
-		<span class="x-right" style="line-height: 40px">共有数据：
+		<xblock> <span class="x-right" style="line-height: 40px">共有数据：
 			<td th:text="${pageInfo.total}"></td> 条
 		</span> </xblock>
 		<!-- <pre class="layui-code" lay-title="JavaScript" lay-skin="notepad">
@@ -96,31 +88,26 @@
 					<td th:text="${notice.type}"></td>
 					<td th:text="${notice.title}"></td>
 					<td th:text="${notice.content}"></td>
-					<td th:text="${#dates.format(notice.createTime, 'yyyy-MM-dd')}"></td>
+					<td
+						th:text="${#dates.format(notice.createTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
 					<!-- |javascript:refundStatus(${orderProduct.id},${orderProduct.status})| -->
 					<td class="td-status">
-						<p th:if="${notice.status==1}">
-							<span class="">已发送</span>
+						<p th:if="${notice.flag==1}">
+							<span class="">已阅读</span>
 						</p>
-						<p th:if="${notice.status==0}">
+						<p th:if="${notice.flag==null}">
 							<span class="layui-btn-normal layui-btn-mini layui-bg-red"
-								th:id="${notice.ID}">草稿箱</span>
+								th:id="${notice.ID}">未阅读</span>
 						</p>
 					</td>
 					<td class="td-manage">
 						<!--  <a onclick="member_stop(this,'10001')" href="javascript:;"  title="启用">
 			                <i class="layui-icon">&#xe601;</i>
-			            </a> --> 
-              		<span class="layui-btn-normal layui-btn-mini layui-bg-red" title="发送" th:if="${notice.status==0}"
-						th:onclick="'send('+'\''+${notice.ID}+'\''+')'"
-						href="javascript:;"><i class="layui-icon">&#xe609;</i>
-					</span> 
-					<a title="查看"
-						th:onclick="'javascript:x_admin_show('+'\'详情\''+','+'\''+'/notice/topNotice?id='+${notice.ID }+'\''+','+'800'+','+'600'+')'"
+			            </a> --> <a title="查看"
+						th:onclick="'javascript:x_admin_show('+'\'详情\''+','+'\''+'/myNotice/myTopNotice?nid='+${notice.ID }+'\''+','+'800'+','+'600'+')'"
 						href="javascript:;"> <i class="layui-icon">&#xe60b;</i>
-					</a>
-					<a title="删除"
-						th:onclick="'javascript:member_del('+this+','+${notice.ID}+','+'\'/notice/del\''+')'"
+					</a> <a title="删除"
+						th:onclick="'javascript:member_del('+this+','+${notice.ID}+','+'\'/myNotice/delMyNotice\''+')'"
 						href="javascript:;"> <i class="layui-icon">&#xe640;</i>
 					</a>
 					</td>

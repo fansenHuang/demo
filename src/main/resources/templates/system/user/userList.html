@@ -40,7 +40,7 @@
 		<button class="layui-btn layui-btn-danger" onclick="delAll('user/delAll')">
 			<i class="layui-icon"></i>批量删除
 		</button>
-		<button class="layui-btn" onclick="x_admin_show('添加用户','addUser')">
+		<button class="layui-btn" onclick="x_admin_show('添加用户','addUser','800','600')">
 			<i class="layui-icon"></i>添加
 		</button>
 		<span class="x-right" style="line-height: 40px">共有数据：
@@ -95,7 +95,7 @@
 						<!--  <a onclick="member_stop(this,'10001')" href="javascript:;"  title="启用">
                 <i class="layui-icon">&#xe601;</i>
               </a> --> <a title="编辑"
-						th:onclick="'javascript:x_admin_show('+'\'编辑\''+','+'\''+'userEdit?id='+${user.ID }+'\''+')'"
+						th:onclick="'javascript:x_admin_show('+'\'编辑\''+','+'\''+'userEdit?id='+${user.ID }+'\''+','+'800'+','+'600'+')'"
 						href="javascript:;"> <i class="layui-icon">&#xe642;</i>
 					</a> <a title="删除"
 						th:onclick="'javascript:member_del('+this+','+${user.ID}+','+'\'/user/del\''+')'"

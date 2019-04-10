@@ -40,7 +40,7 @@
       </div>
       <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll('module/delAll')"><i class="layui-icon"> </i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('添加模块','addModule')">
+        <button class="layui-btn" onclick="x_admin_show('添加模块','addModule','800','600')">
 			<i class="layui-icon"></i>添加
 		</button>
         <span class="x-right" style="line-height:40px">共有数据：<td th:text="${pageInfo.total}"></td> 条</span>
@@ -71,7 +71,7 @@
             <td th:text="${module.url}"></td>
             <td th:text="${module.parentModule.name}"></td>
             <td class="td-manage">
-              <a title="编辑" th:onclick="'javascript:x_admin_show('+'\'编辑\''+','+'\''+'editModule?id='+${module.ID }+'\''+')'" href="javascript:;">
+              <a title="编辑" th:onclick="'javascript:x_admin_show('+'\'编辑\''+','+'\''+'editModule?id='+${module.ID }+'\''+','+'800'+','+'600'+')'" href="javascript:;">
                 <i class="layui-icon">&#xe642;</i>
               </a>
               <a title="删除" th:onclick="'javascript:member_del('+this+','+${module.ID}+','+'\'module/del\''+')'" href="javascript:;">
