@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.notice.entity.Notice;
 
@@ -32,7 +33,7 @@ public interface NoticeMapper {
 	 * 
 	 * @param ids
 	 */
-	void delAll(@Param("ids") String[] ids);
+	void delAll(@Param("ids")String[] ids);
 
 	/**
 	 * 草稿箱到发送
@@ -41,5 +42,5 @@ public interface NoticeMapper {
 	void updateStatusById(@Param("id") String id);
 
 	Notice findNoticeById(@Param("id")String id);
-
+	
 }

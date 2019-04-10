@@ -8,7 +8,7 @@ import com.notice.entity.Notice;
  * 
  * @author wendong
  *
- * 2019年1月22日
+ *         2019年1月22日
  */
 public interface NoticeService {
 

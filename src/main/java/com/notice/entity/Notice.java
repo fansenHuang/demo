@@ -15,6 +15,19 @@ public class Notice extends BaseEntity{
 	
 	//状态 0草稿箱 1已发布
 	private Integer status;
+	
+	/**
+	 * 是否已读
+	 */
+	private Integer flag;
+	
+	public Integer getFlag() {
+		return flag;
+	}
+
+	public void setFlag(Integer flag) {
+		this.flag = flag;
+	}
 
 	public String getType() {
 		return type;
@@ -50,7 +63,10 @@ public class Notice extends BaseEntity{
 
 	@Override
 	public String toString() {
-		return "Notice [type=" + type + ", title=" + title + ", content=" + content + ", status=" + status + "]";
+		return "Notice [type=" + type + ", title=" + title + ", content=" + content + ", status=" + status + ", flag="
+				+ flag + "]";
 	}
+
+	
 	
 }

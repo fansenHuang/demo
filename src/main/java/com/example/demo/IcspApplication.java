@@ -15,9 +15,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 @MapperScan("com.*.mapper")
 @ServletComponentScan(basePackages={"com.druid.servlet"})
 public class IcspApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(IcspApplication.class, args);
 	}
-
 }

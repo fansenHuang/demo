@@ -5,7 +5,7 @@
 	<resultMap type="Notice" id="NRM" autoMapping="true">
 		<id column="ID" property="ID" />
 	</resultMap>
-
+	
 	<insert id="saveNotice" parameterType="Notice" useGeneratedKeys="true"
 		keyProperty="ID">
 		insert into
@@ -55,9 +55,10 @@
 	<update id="updateStatusById">
 		update notice set status=1 where ID=#{id}
 	</update>
-	
+
 	<select id="findNoticeById" resultMap="NRM">
-		select * from notice where ID=#{id}
+		select * from notice where
+		ID=#{id}
 	</select>
 	
 </mapper>
