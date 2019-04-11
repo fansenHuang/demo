@@ -1,19 +1,19 @@
 package com.system.controller;
 
-import java.util.Map;
-
 import javax.annotation.Resource;
-import javax.servlet.ServletRequest;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.core.util.MD5Hash;
 import com.system.entity.User;
 import com.system.service.UserService;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * 用户
@@ -23,6 +23,7 @@ import com.system.service.UserService;
  */
 @Controller
 @RequestMapping("/user/")
+@Api(value="/user/",description = "用户信息测试controller")
 public class UserController {
 
 	@Resource
@@ -51,8 +52,9 @@ public class UserController {
 	}
 
 	// 增加用户
+	@ApiOperation(value = "addUser", httpMethod = "POST", notes = "增加用户")
 	@ResponseBody
-	@RequestMapping("addUser")
+	@RequestMapping(value="addUser",method=RequestMethod.POST)
 	public String andUser(User user,@RequestParam(value="roleId",required=false)Integer[] roleIds) {
 		
 		

@@ -42,6 +42,12 @@ public class MainController {
 		return "welcome";
 	}
 
+	@RequestMapping("/swagger")
+	public String swagger(){
+		
+		return "redirect:swagger-ui.html";
+	}
+	
 	@RequestMapping("/index")
 	public String index(Map<String, Object> map) throws JsonProcessingException {
 

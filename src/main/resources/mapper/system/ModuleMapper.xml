@@ -71,7 +71,7 @@
 	</select>
 
 	<update id="saveEditModule">
-		update module set name=#{name},parentId=#{parentModule.ID},type=#{type},remark=#{remark},update_by=#{updateBy},update_time=#{updateTime},icon=#{icon} where ID=#{ID}
+		update module set name=#{name},parentId=#{parentModule.ID},type=#{type},remark=#{remark},update_by=#{updateBy},update_time=#{updateTime},icon=#{icon},url=#{url} where ID=#{ID}
 	</update>
 	
 </mapper>
