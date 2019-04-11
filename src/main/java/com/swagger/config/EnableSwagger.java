@@ -1,4 +1,4 @@
-package com.system.config.swagger;
+package com.swagger.config;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 
